@@ -1,3 +1,6 @@
 .vs
 Library
 Temp
+SalesDataSystem.csproj
+SalesDataSystem.sln
+UnityPackageManager/manifest.json
