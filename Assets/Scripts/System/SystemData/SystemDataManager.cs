@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SystemDataManager
 {
-    public static ProductSystemData ProductSysData;
+    public ProductSystemData ProductSysData;
 
-    public static void Init()
+    public void Init()
     {
         ProductSysData = new ProductSystemData();
         ProductSysData.InitData();

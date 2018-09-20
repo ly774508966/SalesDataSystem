@@ -15,14 +15,14 @@ public class ProductSystemData : SystemDataBase
         allProductInfosDict = ConfigDataManager.ProductInfosDict;
     }
 
-    public void AddProduct()
+    public void AddProduct(ProductInfo info)
     {
-
+        allProductInfosDict[info.ProductID] = info;
     }
 
-    public void DeleteProduct()
+    public void DeleteProduct(int productId)
     {
-
+        allProductInfosDict.Remove(productId);
     }
 
     public void SaveChange()

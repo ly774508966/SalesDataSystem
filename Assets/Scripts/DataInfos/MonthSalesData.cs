@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DailySalesData
+public class MonthSalesData
 {
     /// <summary>
     /// 总销售金额
@@ -30,7 +30,7 @@ public class DailySalesData
     /// </summary>
     public int OldCustomerSales;
     /// <summary>
-    /// 门店销售情况
+    /// 每日数据
     /// </summary>
-    List<StoreDailyInfo> StoreDailyInfos = new List<StoreDailyInfo>();
+    public List<DailySalesData> DailySalesData = new List<DailySalesData>();
 }

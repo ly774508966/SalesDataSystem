@@ -34,6 +34,7 @@ public class SalesDataSystem : MonoBehaviour
     public ProductCfg ProductCfg;
     public StoreCfg StoreCfg;
 
+    public static SystemDataManager SystemDatas;
 
     private Dictionary<eSystemStep, SystemStepBase> systemStepDict = new Dictionary<eSystemStep, SystemStepBase>();
     private eSystemStep currentStep;
@@ -41,13 +42,16 @@ public class SalesDataSystem : MonoBehaviour
     void Awake()
     {
         _instance = this;
-        InitGameSteps();
-        ConfigDataManager.LoadData();
+        Init();
     }
 
-    private void OnEnable()
+    void Init()
     {
+        InitGameSteps();
         currentStep = eSystemStep.Login;
+        ConfigDataManager.LoadData();
+        SystemDatas = new SystemDataManager();
+        SystemDatas.Init();
     }
 
     private void OnDestroy()

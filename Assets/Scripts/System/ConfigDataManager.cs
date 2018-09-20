@@ -38,6 +38,16 @@ public class ConfigDataManager
     }
 
 
+    public static void SaveProductInfo(List<ProductInfo> newInfo)
+    {
+        ProductCfg newCfg = new ProductCfg();
+        newCfg.Products = newInfo;
+        string info = JsonUtility.ToJson(newCfg);
+        string persistPath = Application.persistentDataPath + "/config/ProductCfg.txt";
+        File.WriteAllText(persistPath, info);
+        LoadProductInfo();
+    }
+
     private static void LoadStoreInfo()
     {
         string persistPath = Application.persistentDataPath + "/config/StoreCfg.txt";
@@ -55,17 +65,6 @@ public class ConfigDataManager
                 StoreInfosDict[s.StoreID] = s;
             }
         }
-    }
-
-
-    public static void SaveProductInfo(List<ProductInfo> newInfo)
-    {
-        ProductCfg newCfg = new ProductCfg();
-        newCfg.Products = newInfo;
-        string info = JsonUtility.ToJson(newCfg);
-        string persistPath = Application.persistentDataPath + "/config/ProductCfg.txt";
-        File.WriteAllText(persistPath, info);
-        LoadProductInfo();
     }
 
     public static void SaveStoreInfo(List<StoreInfo> newinfo)

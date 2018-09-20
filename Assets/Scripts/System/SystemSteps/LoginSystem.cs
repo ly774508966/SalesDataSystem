@@ -6,19 +6,26 @@ using UnityEngine.UI;
 public class LoginSystem : SystemStepBase
 {
     public InputField AccountInput;
-
+    public Text Text_Data;
     private string Account;
     private string PassWord;
     // Use this for initialization
 
     private void OnEnable()
     {
+        string date = System.DateTime.Now.ToString("yyyy . MM .dd");
+        SetDate(date);
         if (PlayerPrefs.HasKey("lastaccount"))
         {
             string lastaccount = PlayerPrefs.GetString("lastaccount");
             AccountInput.text = lastaccount;
             Account = lastaccount;
         }
+    }
+
+    public void SetDate(string date)
+    {
+        Text_Data.text = date;
     }
 
     public void SetAccount(string value)

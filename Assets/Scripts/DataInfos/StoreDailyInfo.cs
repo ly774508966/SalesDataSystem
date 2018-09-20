@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ProductTransactionInfo
 {
     /// <summary>
@@ -9,11 +10,16 @@ public class ProductTransactionInfo
     /// </summary>
     public int ProductId;
     /// <summary>
+    /// 产品名称
+    /// </summary>
+    public string ProductName;
+    /// <summary>
     /// 产品成交数量
     /// </summary>
     public int TransactionCount;
 }
 
+[System.Serializable]
 public class StoreDailyInfo
 {
     /// <summary>
@@ -24,6 +30,14 @@ public class StoreDailyInfo
     /// 门店名称
     /// </summary>
     public string StoreName;
+    /// <summary>
+    /// 保底销售金额
+    /// </summary>
+    public int LeastSales;
+    /// <summary>
+    /// 目标销售金额
+    /// </summary>
+    public int TargetSales;
     /// <summary>
     /// 今日进店人数
     /// </summary>
