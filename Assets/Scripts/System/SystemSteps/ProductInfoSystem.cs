@@ -49,7 +49,6 @@ public class ProductInfoSystem : SystemStepBase
     private void CreateProductPrefab(ProductInfo info)
     {
         GameObject newGo = GameObject.Instantiate(ProductInfoPrefab);
-        newGo.SetActive(false);
         newGo.transform.SetParent(ProductInfoContent);
         ProductInfoPrefabInfo prefabInfo = newGo.GetComponent<ProductInfoPrefabInfo>();
         prefabInfo.SetValue(info);

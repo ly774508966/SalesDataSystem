@@ -11,4 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7f4a246a7e08b47a1197e6b7f7119f, type: 3}
   m_Name: StoreCfg
   m_EditorClassIdentifier: 
-  Stores: []
+  Stores:
+  - StoreID: 1
+    StoreName: asda
+    LeastSales: 11222
+    TargetSales: 123312312
+    SalesPerson:
+    - 11
+    - 222
+  - StoreID: 2
+    StoreName: sadad
+    LeastSales: 222233
+    TargetSales: 333
+    SalesPerson:
+    - 1
+    - 2
+    - 3
