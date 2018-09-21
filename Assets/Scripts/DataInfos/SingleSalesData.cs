@@ -6,6 +6,14 @@ using UnityEngine;
 public class SingleSalesData
 {
     /// <summary>
+    /// 序号
+    /// </summary>
+    public int Index;
+    /// <summary>
+    /// 店面ID
+    /// </summary>
+    public string StoreID;
+    /// <summary>
     /// 店面名称
     /// </summary>
     public string StoreName;
@@ -26,13 +34,17 @@ public class SingleSalesData
     /// </summary>
     public int ProductID;
     /// <summary>
+    /// 商品名称
+    /// </summary>
+    public string ProductName;
+    /// <summary>
     /// 产品单价
     /// </summary>
     public float UnitPrice;
     /// <summary>
     /// 销售数量
     /// </summary>
-    public int SaleCount;
+    public float SaleCount;
     /// <summary>
     /// 销售总价
     /// </summary>

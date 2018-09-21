@@ -5,5 +5,8 @@ using UnityEngine;
 public class DataHistorySystem : SystemStepBase
 {
 
-
+    public override void OnClickBack()
+    {
+        SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.Menu);
+    }
 }

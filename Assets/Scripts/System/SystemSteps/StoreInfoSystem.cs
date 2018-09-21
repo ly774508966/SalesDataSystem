@@ -20,6 +20,11 @@ public class StoreInfoSystem : SystemStepBase
         UpdateStoreShow();
     }
 
+    public override void OnClickBack()
+    {
+        SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.Menu);
+    }
+
     private void UpdateStoreShow()
     {
         List<StoreInfo> storeInfos = new List<StoreInfo>();

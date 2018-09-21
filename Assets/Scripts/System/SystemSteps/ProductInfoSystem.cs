@@ -20,6 +20,11 @@ public class ProductInfoSystem : SystemStepBase
         UpdateProductShow();
     }
 
+    public override void OnClickBack()
+    {
+        SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.Menu);
+    }
+
     private void UpdateProductShow()
     {
         List<ProductInfo> productInfos = new List<ProductInfo>();
@@ -35,6 +40,10 @@ public class ProductInfoSystem : SystemStepBase
             if (curPrefabIndex > productInfoPrefabList.Count)
             {
                 CreateProductPrefab(productInfos[i]);
+            }
+            else
+            {
+                productInfoPrefabList[i].SetValue(productInfos[i]);
             }
         }
         if (curPrefabIndex < productInfoPrefabList.Count)

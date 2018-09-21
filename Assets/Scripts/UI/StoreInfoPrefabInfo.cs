@@ -18,12 +18,6 @@ public class StoreInfoPrefabInfo : MonoBehaviour
         Text_Name.text = value.StoreName;
         Text_LeastSales.text = value.LeastSales.ToString();
         Text_TargetSales.text = value.TargetSales.ToString();
-        StringBuilder strb = new StringBuilder();
-        for (int i = 0; i < value.SalesPerson.Count; i++)
-        {
-            strb.Append(value.SalesPerson[i]);
-            strb.Append(',');
-        }
-        Text_SalesPerson.text = strb.ToString();
+        Text_SalesPerson.text = null;
     }
 }

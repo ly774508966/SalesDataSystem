@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuSystem : SystemStepBase
 {
+    public Text Text_time;
+
+    private void OnEnable()
+    {
+        Text_time.text = System.DateTime.Now.ToString("yyyyMMdd");
+    }
+
     public void OnClickHistory()
     {
         SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.DataHistory);
@@ -23,4 +30,5 @@ public class MenuSystem : SystemStepBase
     {
         SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.StoreInfo);
     }
+
 }

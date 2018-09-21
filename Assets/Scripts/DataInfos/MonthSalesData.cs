@@ -6,6 +6,10 @@ using UnityEngine;
 public class MonthSalesData
 {
     /// <summary>
+    /// 月份
+    /// </summary>
+    public int Month;
+    /// <summary>
     /// 总销售金额
     /// </summary>
     public int TotalSales;
@@ -29,8 +33,4 @@ public class MonthSalesData
     /// 老客户成交金额
     /// </summary>
     public int OldCustomerSales;
-    /// <summary>
-    /// 每日数据
-    /// </summary>
-    public List<DailySalesData> DailySalesData = new List<DailySalesData>();
 }

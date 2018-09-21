@@ -11,4 +11,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2fb3334793587439830a2214e22fcd, type: 3}
   m_Name: ProductCfg
   m_EditorClassIdentifier: 
-  Products: []
+  Products:
+  - ProductName: "\u7ECF\u5178\u6B3E180\u514B*10\u7897"
+    ProductID: 1
+    UnitPrice: 3980
+  - ProductName: "\u7ECF\u5178\u6B3E180\u514B*30\u7897"
+    ProductID: 2
+    UnitPrice: 11940
+  - ProductName: "\u5C0A\u4EAB\u6B3E\u65E0\u7CD6180\u514B*6\u7897"
+    ProductID: 3
+    UnitPrice: 2748
+  - ProductName: "\u5C0A\u4EAB\u6B3E180\u514B*6\u7897"
+    ProductID: 4
+    UnitPrice: 2748
+  - ProductName: "\u5C0A\u4EAB\u6B3E\u4E2D\u79CB180\u514B*6\u7897"
+    ProductID: 5
+    UnitPrice: 2748
+  - ProductName: "\u5C0A\u4EAB\u6B3E180\u514B*12\u7897"
+    ProductID: 6
+    UnitPrice: 5496
+  - ProductName: "\u5C0A\u4EAB\u6B3E\u5BB6\u5EAD\u88C5180\u514B*30\u7897"
+    ProductID: 7
+    UnitPrice: 13740
+  - ProductName: "\u597D\u5B55\u6B3E108\u514B*6\u7897"
+    ProductID: 8
+    UnitPrice: 1548
+  - ProductName: "\u660E\u661F\u6B3E158\u514B*10\u7897"
+    ProductID: 9
+    UnitPrice: 3280
+  - ProductName: "\u8363\u8000\u6B3E108\u514B*6\u7897"
+    ProductID: 10
+    UnitPrice: 1548
+  - ProductName: "\u5E72\u71D5\u76CF50g"
+    ProductID: 11
+    UnitPrice: 4400
+  - ProductName: "\u5E72\u71D5\u76CF100g"
+    ProductID: 12
+    UnitPrice: 8800
+  - ProductName: "\u5373\u7096\u71D5\u7A9D"
+    ProductID: 13
+    UnitPrice: 5280
+  - ProductName: "\u9A6C\u5361\u5170\u4E13\u5C5E\u793C\u76D2"
+    ProductID: 14
+    UnitPrice: 520
+  - ProductName: "\u5C0A\u4EAB\u5355\u7897"
+    ProductID: 15
+    UnitPrice: 458
+  - ProductName: "\u7ECF\u5178\u5355\u7897"
+    ProductID: 16
+    UnitPrice: 398

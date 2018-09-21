@@ -31,8 +31,7 @@ public class SalesDataSystem : MonoBehaviour
     public GameObject ProductInfo;
     public GameObject StoreInfo;
 
-    public ProductCfg ProductCfg;
-    public StoreCfg StoreCfg;
+    public eSystemStep InitStep;
 
     public static SystemDataManager SystemDatas;
 
@@ -48,10 +47,23 @@ public class SalesDataSystem : MonoBehaviour
     void Init()
     {
         InitGameSteps();
-        currentStep = eSystemStep.Login;
-        ConfigDataManager.LoadData();
+        currentStep = InitStep;
+        ConfigDataManager.LoadData(System.DateTime.Now.Year);
         SystemDatas = new SystemDataManager();
         SystemDatas.Init();
+    }
+
+    void OnYearChange(int year)
+    {
+        ConfigDataManager.LoadData(year);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ConfigDataManager.SaveProductInfo();
+        }
     }
 
     private void OnDestroy()
@@ -64,7 +76,7 @@ public class SalesDataSystem : MonoBehaviour
         systemStepDict[eSystemStep.Login] = Login.GetComponent<LoginSystem>();
         systemStepDict[eSystemStep.Menu] = Menu.GetComponent<MenuSystem>();
         systemStepDict[eSystemStep.DataHistory] = HistoryData.GetComponent<DataHistorySystem>();
-        systemStepDict[eSystemStep.DataHistory] = DailyData.GetComponent<DailyDataSystem>();
+        systemStepDict[eSystemStep.DailyData] = DailyData.GetComponent<DailyDataSystem>();
         systemStepDict[eSystemStep.ProductInfo] = ProductInfo.GetComponent<ProductInfoSystem>();
         systemStepDict[eSystemStep.StoreInfo] = StoreInfo.GetComponent<StoreInfoSystem>();
     }
