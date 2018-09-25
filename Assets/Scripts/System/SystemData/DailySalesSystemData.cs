@@ -8,7 +8,7 @@ public class DailySalesSystemData : SystemDataBase
     /// <summary>
     /// 当前所有数据
     /// </summary>
-    public Dictionary<int, SingleSalesData> allSingleSaleDataDict = new Dictionary<int, SingleSalesData>();
+    public Dictionary<string, DailySalesData> allDailydataSaleDataDict = new Dictionary<string, DailySalesData>();
 
     public DailySalesData DailyData;
 
@@ -20,16 +20,41 @@ public class DailySalesSystemData : SystemDataBase
 
     }
 
-    public void AddSingleSaleData(SingleSalesData info)
+    public List<SingleSalesData> LoadData(string date)
     {
-        allSingleSaleDataDict[info.Index] = info;
+        if (allDailydataSaleDataDict.ContainsKey(date))
+            return allDailydataSaleDataDict[date].AllSingleSalesData;
+        else
+        {
+            DailySalesData record = ConfigDataManager.LoadDailyData(date);
+            allDailydataSaleDataDict[date] = record;
+            return record.AllSingleSalesData;
+        }
     }
 
-    public void DeleteSingleSaleData(int index)
+    public void AddSingleSaleData(string date, SingleSalesData info)
     {
-        if (allSingleSaleDataDict.ContainsKey(index))
+        if (!allDailydataSaleDataDict.ContainsKey(date))
         {
-            allSingleSaleDataDict.Remove(index);
+            DailySalesData dailydata = new DailySalesData();
+            dailydata.Date = date;
+            allDailydataSaleDataDict[date] = dailydata;
+        }
+        allDailydataSaleDataDict[date].AllSingleSalesData.Add(info);
+    }
+
+    public void DeleteSingleSaleData(string date, int index)
+    {
+        if (allDailydataSaleDataDict.ContainsKey(date))
+        {
+            for (int i = 0; i < allDailydataSaleDataDict[date].AllSingleSalesData.Count; i++)
+            {
+                if (allDailydataSaleDataDict[date].AllSingleSalesData[i].Index == index)
+                {
+                    allDailydataSaleDataDict[date].AllSingleSalesData.RemoveAt(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -38,8 +63,14 @@ public class DailySalesSystemData : SystemDataBase
 
     }
 
-    public void SaveChange()
+    public void SaveChange(string date)
     {
-
+        if (!allDailydataSaleDataDict.ContainsKey(date))
+        {
+            DailySalesData dailydata = new DailySalesData();
+            dailydata.Date = date;
+            allDailydataSaleDataDict[date] = dailydata;
+        }
+        ConfigDataManager.SaveDailyData(date, allDailydataSaleDataDict[date]);
     }
 }

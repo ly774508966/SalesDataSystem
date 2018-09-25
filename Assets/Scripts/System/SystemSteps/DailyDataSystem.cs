@@ -25,26 +25,27 @@ public class DailyDataSystem : SystemStepBase
     {
         CurDateTime = System.DateTime.Now.ToString("yyyyMMdd");
         DateTimeInput.text = CurDateTime;
+        RefreshDailyDataShow();
     }
 
     public void OnDateValueChanged(string value)
     {
+        if (value.Length != 8)
+        {
+            SalesDataSystem.TipsShow.ShowTipsInfo("日期格式错误");
+            return;
+        }
         CurDateTime = value;
     }
 
     public void OnClickRefreshData()
     {
-
         RefreshDailyDataShow();
     }
 
     public void RefreshDailyDataShow()
     {
-        List<SingleSalesData> singleSaleInfos = new List<SingleSalesData>();
-        foreach (var p in SalesDataSystem.SystemDatas.DailySysData.allSingleSaleDataDict)
-        {
-            singleSaleInfos.Add(p.Value);
-        }
+        List<SingleSalesData> singleSaleInfos = SalesDataSystem.SystemDatas.DailySysData.LoadData(CurDateTime);
         singleSaleInfos.Sort((a, b) =>
         {
             if (a.Index > b.Index)
@@ -96,8 +97,8 @@ public class DailyDataSystem : SystemStepBase
     {
         EditDailyDataPanel.SetActive(true);
         SingleSalesData data = new SingleSalesData();
-        data.Index = SalesDataSystem.SystemDatas.DailySysData.allSingleSaleDataDict.Count + 1;
-        EditorDailyPrefabInfo.SetValue(data);
+        data.Index = SalesDataSystem.SystemDatas.DailySysData.LoadData(CurDateTime).Count + 1;
+        EditorDailyPrefabInfo.SetValue(CurDateTime, data);
     }
 
     public void OnClickEditorData()
@@ -107,7 +108,7 @@ public class DailyDataSystem : SystemStepBase
             if (s.IsSelected)
             {
                 EditDailyDataPanel.SetActive(true);
-                EditorDailyPrefabInfo.SetValue(s.data);
+                EditorDailyPrefabInfo.SetValue(CurDateTime, s.data);
                 break;
             }
         }
@@ -118,8 +119,16 @@ public class DailyDataSystem : SystemStepBase
         EditDailyDataPanel.SetActive(false);
     }
 
-    public void OnClickSubmitData()
+    public void OnSubmitEditData()
     {
+        EditorDailyPrefabInfo.OnClickSubmitData();
+        SalesDataSystem.SystemDatas.DailySysData.AddSingleSaleData(CurDateTime, EditorDailyPrefabInfo.EditorSingleData);
+        RefreshDailyDataShow();
+    }
 
+    public void OnClickSaveData()
+    {
+        SalesDataSystem.SystemDatas.DailySysData.SaveChange(CurDateTime);
+        SalesDataSystem.TipsShow.ShowTipsInfo("保存数据成功");
     }
 }

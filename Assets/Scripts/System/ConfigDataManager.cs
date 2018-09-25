@@ -8,19 +8,17 @@ public class ConfigDataManager
     public static Dictionary<int, ProductInfo> ProductInfosDict = new Dictionary<int, ProductInfo>();
     public static Dictionary<int, StoreInfo> StoreInfosDict = new Dictionary<int, StoreInfo>();
     public static List<SalePersonInfo> SalePersonList = new List<SalePersonInfo>();
-    public static Dictionary<int, AnnualSalesData> AnnualSalesDataDict = new Dictionary<int, AnnualSalesData>();
 
-    public static void LoadData(int year)
+    public static void LoadData()
     {
         LoadProductInfo();
         LoadStoreInfo();
         LoadSalePersonInfo();
-        LoadSalesData(year);
     }
 
     private static void LoadProductInfo()
     {
-        string persistPath = Application.persistentDataPath + "/ProductCfg.txt";
+        string persistPath = Application.persistentDataPath + "Config/ProductCfg.txt";
         if (File.Exists(persistPath))
         {
             string info = File.ReadAllText(persistPath);
@@ -62,14 +60,15 @@ public class ConfigDataManager
         ProductCfg newCfg = new ProductCfg();
         newCfg.Products = newInfo;
         string info = JsonUtility.ToJson(newCfg);
-        string persistPath = Application.persistentDataPath + "/ProductCfg.txt";
+        string persistPath = Application.persistentDataPath + "Config/ProductCfg.txt";
+        CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadProductInfo();
     }
 
     private static void LoadStoreInfo()
     {
-        string persistPath = Application.persistentDataPath + "/StoreCfg.txt";
+        string persistPath = Application.persistentDataPath + "Config/StoreCfg.txt";
         if (File.Exists(persistPath))
         {
             string info = File.ReadAllText(persistPath);
@@ -94,14 +93,15 @@ public class ConfigDataManager
         StoreCfg newCfg = new StoreCfg();
         newCfg.Stores = newinfo;
         string info = JsonUtility.ToJson(newCfg);
-        string persistPath = Application.persistentDataPath + "/StoreCfg.txt";
+        string persistPath = Application.persistentDataPath + "Config/StoreCfg.txt";
+        CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadStoreInfo();
     }
 
     private static void LoadSalePersonInfo()
     {
-        string persistPath = Application.persistentDataPath + "/SalePersonCfg.txt";
+        string persistPath = Application.persistentDataPath + "Config/SalePersonCfg.txt";
         if (File.Exists(persistPath))
         {
             string info = File.ReadAllText(persistPath);
@@ -126,35 +126,51 @@ public class ConfigDataManager
         SalePersonCfg newCfg = new SalePersonCfg();
         newCfg.SalePerson = newinfo;
         string info = JsonUtility.ToJson(newCfg);
-        string persistPath = Application.persistentDataPath + "/SalePersonCfg.txt";
+        string persistPath = Application.persistentDataPath + "Config/SalePersonCfg.txt";
+        CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadStoreInfo();
     }
 
-    private static void LoadSalesData(int year)
+    public static DailySalesData LoadDailyData(string date)
     {
-        string persistPath = string.Format("{0}/{1}.txt", Application.persistentDataPath, year);
-        AnnualSalesData annualCfg = null;
+        string year = date.Substring(0, 4);
+        string month = date.Substring(4, 2);
+        string day = date.Substring(6, 2);
+        string persistPath = string.Format("{0}/{1}/{2}/{3}/{4}.txt", Application.persistentDataPath, "HistoryData", year, month, day);
         if (File.Exists(persistPath))
         {
             string info = File.ReadAllText(persistPath);
-            annualCfg = JsonUtility.FromJson<AnnualSalesData>(info);
+            DailySalesData dailydata = JsonUtility.FromJson<DailySalesData>(info);
+            return dailydata;
         }
         else
         {
-            annualCfg = new AnnualSalesData();
-            annualCfg.Year = year;
+            DailySalesData dailydata = new DailySalesData();
+            dailydata.Date = date;
+            return dailydata;
         }
-        AnnualSalesDataDict[year] = annualCfg;
     }
 
-    public static void SaveDailyData(int month, DailySalesData newinfo)
+    public static void SaveDailyData(string date, DailySalesData newinfo)
     {
-        //StoreCfg newCfg = new StoreCfg();
-        //newCfg.Stores = newinfo;
-        //string info = JsonUtility.ToJson(newCfg);
-        //string persistPath = Application.persistentDataPath + "/config/StoreCfg.txt";
-        //File.WriteAllText(persistPath, info);
-        //LoadSalesData();
+        string year = date.Substring(0, 4);
+        string month = date.Substring(4, 2);
+        string day = date.Substring(6, 2);
+        string persistPath = string.Format("{0}/{1}/{2}/{3}/{4}.txt", Application.persistentDataPath, "HistoryData", year, month, day);
+        CreateDir(persistPath);
+        string info = JsonUtility.ToJson(newinfo);
+        File.WriteAllText(persistPath, info);
+    }
+
+    private static void  CreateDir(string path)
+    {
+        string parent = Path.GetDirectoryName(path);
+        if (!Directory.Exists(parent))
+        {
+            Directory.CreateDirectory(parent);
+            CreateDir(parent);
+        }
+
     }
 }

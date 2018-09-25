@@ -48,22 +48,14 @@ public class SalesDataSystem : MonoBehaviour
     {
         InitGameSteps();
         currentStep = InitStep;
-        ConfigDataManager.LoadData(System.DateTime.Now.Year);
+        ConfigDataManager.LoadData();
         SystemDatas = new SystemDataManager();
         SystemDatas.Init();
     }
 
-    void OnYearChange(int year)
-    {
-        ConfigDataManager.LoadData(year);
-    }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ConfigDataManager.SaveProductInfo();
-        }
+
     }
 
     private void OnDestroy()

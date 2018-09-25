@@ -1265,7 +1265,7 @@ GameObject:
   - component: {fileID: 222721866507503948}
   - component: {fileID: 114271077532266352}
   - component: {fileID: 114426821619795242}
-  - component: {fileID: 114058788960378728}
+  - component: {fileID: 114589932660134836}
   m_Layer: 5
   m_Name: EditorSingleDataPrefab
   m_TagString: Untagged
@@ -1736,43 +1736,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114058788960378728
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1828540170957814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfb80bf9ea00b543b6cc72e26e14194, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Input_Index: {fileID: 114699848397454188}
-  Text_StoreID: {fileID: 114412704364267098}
-  DropDown_StoreName: {fileID: 114500000911694180}
-  Input_CustomerName: {fileID: 114396217247412592}
-  Input_CustomerDetailInfo: {fileID: 114103596304619112}
-  DropDown_IsNewCustomer: {fileID: 114821800426546710}
-  Text_ProductId: {fileID: 114680960237853324}
-  DropDown_ProductName: {fileID: 114107297325436834}
-  Input_ProductPrice: {fileID: 114724744401275634}
-  Input_TransactionCount: {fileID: 114119320073100104}
-  Input_TotalSales: {fileID: 114696661844763294}
-  DropDown_SalePerspon1: {fileID: 114151200310858486}
-  DropDown_SalePerson2: {fileID: 114076676527393650}
-  Index: 0
-  StoreID: 0
-  StoreName: 
-  CustomerName: 
-  CustomerDetailInfo: 
-  IsNewCustoner: 0
-  ProductId: 0
-  ProductName: 
-  ProductUnitPrice: 0
-  TransactionCount: 0
-  TotalSales: 0
-  SalePerson1: 
-  SalePerson2: 
 --- !u!114 &114059610620058950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1865,7 +1828,18 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnSalesPerson2Changed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114103596304619112
@@ -1916,7 +1890,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnCustomerDetailInfoChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -1977,7 +1962,18 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnProductNameChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114109869544564592
@@ -2061,7 +2057,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnSaleCountChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -2221,7 +2228,18 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnSalesPerson1Changed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114154155968932330
@@ -2781,7 +2799,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnCustomerNameChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -3069,7 +3098,18 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnStoreNameChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114505790401409354
@@ -3261,6 +3301,43 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114589932660134836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828540170957814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfb80bf9ea00b543b6cc72e26e14194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Input_Index: {fileID: 114699848397454188}
+  Text_StoreID: {fileID: 114412704364267098}
+  DropDown_StoreName: {fileID: 114500000911694180}
+  Input_CustomerName: {fileID: 114396217247412592}
+  Input_CustomerDetailInfo: {fileID: 114103596304619112}
+  DropDown_IsNewCustomer: {fileID: 114821800426546710}
+  Text_ProductId: {fileID: 114680960237853324}
+  DropDown_ProductName: {fileID: 114107297325436834}
+  Input_ProductPrice: {fileID: 114724744401275634}
+  Input_TransactionCount: {fileID: 114119320073100104}
+  Input_TotalSales: {fileID: 114696661844763294}
+  DropDown_SalePerspon1: {fileID: 114151200310858486}
+  DropDown_SalePerson2: {fileID: 114076676527393650}
+  Index: 0
+  StoreID: 0
+  StoreName: 
+  CustomerName: 
+  CustomerDetailInfo: 
+  IsNewCustomer: 0
+  ProductId: 0
+  ProductName: 
+  ProductUnitPrice: 0
+  TransactionCount: 0
+  TotalSales: 0
+  SalePerson1: 
+  SalePerson2: 
 --- !u!114 &114593947989758312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3845,7 +3922,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnTotalSalesChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -3908,7 +3996,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnIndexChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -4118,7 +4217,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnProductPriceChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -4506,7 +4616,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114589932660134836}
+        m_MethodName: OnIsNewCustomerChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114828259959840686

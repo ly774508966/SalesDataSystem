@@ -8,7 +8,7 @@ public class DailySalesData
     /// <summary>
     /// 当前日期
     /// </summary>
-    public int MonthDay;
+    public string Date;
     /// <summary>
     /// 总销售金额
     /// </summary>
@@ -33,4 +33,8 @@ public class DailySalesData
     /// 老客户成交金额
     /// </summary>
     public int OldCustomerSales;
+    /// <summary>
+    /// 当日销售数据
+    /// </summary>
+    public List<SingleSalesData> AllSingleSalesData = new List<SingleSalesData>();
 }

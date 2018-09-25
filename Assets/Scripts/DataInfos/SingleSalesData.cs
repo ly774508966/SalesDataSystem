@@ -12,7 +12,7 @@ public class SingleSalesData
     /// <summary>
     /// 店面ID
     /// </summary>
-    public string StoreID;
+    public int StoreID;
     /// <summary>
     /// 店面名称
     /// </summary>
@@ -40,11 +40,11 @@ public class SingleSalesData
     /// <summary>
     /// 产品单价
     /// </summary>
-    public float UnitPrice;
+    public float UnitPrice = 0;
     /// <summary>
     /// 销售数量
     /// </summary>
-    public float SaleCount;
+    public float SaleCount = 0;
     /// <summary>
     /// 销售总价
     /// </summary>
