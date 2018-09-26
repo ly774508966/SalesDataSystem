@@ -114,6 +114,19 @@ public class DailyDataSystem : SystemStepBase
         }
     }
 
+    public void OnClickDeletData()
+    {
+        foreach (var s in singleDataInfosPrefabList)
+        {
+            if (s.IsSelected)
+            {
+                SalesDataSystem.SystemDatas.DailySysData.DeleteSingleSaleData(CurDateTime, s.data.Index);
+                break;
+            }
+        }
+        RefreshDailyDataShow();
+    }
+
     public void OnClickEditPanelBack()
     {
         EditDailyDataPanel.SetActive(false);
@@ -124,6 +137,7 @@ public class DailyDataSystem : SystemStepBase
         EditorDailyPrefabInfo.OnClickSubmitData();
         SalesDataSystem.SystemDatas.DailySysData.AddSingleSaleData(CurDateTime, EditorDailyPrefabInfo.EditorSingleData);
         RefreshDailyDataShow();
+        EditDailyDataPanel.SetActive(false);
     }
 
     public void OnClickSaveData()

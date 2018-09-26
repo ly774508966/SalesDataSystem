@@ -6,17 +6,9 @@ using UnityEngine;
 public class MonthSalesData
 {
     /// <summary>
-    /// 月份
-    /// </summary>
-    public int Month;
-    /// <summary>
     /// 总销售金额
     /// </summary>
-    public int TotalSales;
-    /// <summary>
-    /// 销售产品
-    /// </summary>
-    public List<ProductTransactionInfo> ProductTransactionInfos = new List<ProductTransactionInfo>();
+    public float TotalSales;
     /// <summary>
     /// 新客户成交数
     /// </summary>
@@ -24,7 +16,7 @@ public class MonthSalesData
     /// <summary>
     /// 新客户成交金额
     /// </summary>
-    public int NewCustomerSales;
+    public float NewCustomerSales;
     /// <summary>
     /// 老客户成交数
     /// </summary>
@@ -32,5 +24,21 @@ public class MonthSalesData
     /// <summary>
     /// 老客户成交金额
     /// </summary>
-    public int OldCustomerSales;
+    public float OldCustomerSales;
+    /// <summary>
+    /// 圈层销售
+    /// </summary>
+    public float CircleSales;
+
+    public MonthSalesData Clone()
+    {
+        MonthSalesData newinfo = new MonthSalesData();
+        newinfo.TotalSales = TotalSales;
+        newinfo.NewCustomerSales = NewCustomerSales;
+        newinfo.NewCustomerTransactions = NewCustomerTransactions;
+        newinfo.OldCustomerSales = OldCustomerSales;
+        newinfo.OldCustomerTransactions = OldCustomerTransactions;
+        newinfo.CircleSales = CircleSales;
+        return newinfo;
+    }
 }

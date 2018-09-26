@@ -804,6 +804,7 @@ MonoBehaviour:
   Text_CustormerDetailInfo: {fileID: 114417514406694254}
   Text_IsNewCustomer: {fileID: 114958078504764920}
   Text_ProductID: {fileID: 114142296314156018}
+  Text_ProductName: {fileID: 114723838559458590}
   Text_UnitPrice: {fileID: 114925374358373072}
   Text_SaleCount: {fileID: 114191778816486156}
   Text_TotalPrice: {fileID: 114724135302386678}
@@ -811,6 +812,20 @@ MonoBehaviour:
   Text_SalesPerson2: {fileID: 114232054359972294}
   Toggle: {fileID: 114686924930249240}
   IsSelected: 0
+  data:
+    Index: 0
+    StoreID: 0
+    StoreName: 
+    CustomerName: 
+    CustomerDetailInfo: 
+    IsNewCustomer: 0
+    ProductID: 0
+    ProductName: 
+    UnitPrice: 0
+    SaleCount: 0
+    TotalPrice: 0
+    SalesPerson1: 
+    SalesPersion2: 
 --- !u!222 &222079656001565884
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -906,7 +921,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224505553632964930}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -924,7 +939,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224505553632964930}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -960,7 +975,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224505553632964930}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -996,7 +1011,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224505553632964930}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1039,11 +1054,11 @@ RectTransform:
   - {fileID: 224938497916781188}
   - {fileID: 224591700585593446}
   - {fileID: 224173672520942460}
-  - {fileID: 224264179149914556}
   - {fileID: 224628886066919082}
   - {fileID: 224332483779080244}
   - {fileID: 224125774918910540}
   - {fileID: 224153149940381228}
+  - {fileID: 224264179149914556}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1099,7 +1114,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224505553632964930}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

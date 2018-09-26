@@ -64,11 +64,11 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         DropDown_ProductName.options = productOpdata;
 
         List<Dropdown.OptionData> salePersonInfos = new List<Dropdown.OptionData>();
+        salePersonInfos.Add(new Dropdown.OptionData("None"));
         foreach (var s in SalesDataSystem.SystemDatas.StoreSysData.AllSalePersonInfos)
         {
             salePersonInfos.Add(new Dropdown.OptionData(s.Name));
         }
-        salePersonInfos.Add(new Dropdown.OptionData("None"));
         DropDown_SalePerspon1.options = salePersonInfos;
         DropDown_SalePerson2.options = salePersonInfos;
     }
@@ -96,7 +96,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         DropDown_SalePerson2.RefreshShownValue();
     }
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }
@@ -108,11 +108,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         prefabdata = data;
         Index = data.Index;
         Input_Index.text = Index.ToString();
-        StoreID = data.StoreID;
-        if (StoreID != 0)
-        {
-            Text_StoreID.text = StoreID.ToString();
-        }
+
         StoreName = data.StoreName;
         int index = 0;
         if (!string.IsNullOrEmpty(StoreName))
@@ -128,6 +124,11 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         }
         DropDown_StoreName.value = index;
         DropDown_StoreName.RefreshShownValue();
+        StoreName = DropDown_StoreName.options[index].text;
+
+        StoreID = SalesDataSystem.SystemDatas.StoreSysData.GetStoreIDByName(StoreName);
+        Text_StoreID.text = StoreID.ToString();
+
         CustomerName = data.CustomerName;
         if (!string.IsNullOrEmpty(CustomerName))
         {
@@ -139,6 +140,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
             Input_CustomerDetailInfo.text = CustomerDetailInfo;
         }
         IsNewCustomer = data.IsNewCustomer;
+        index = 0;
         if (IsNewCustomer)
         {
             index = 0;
@@ -149,13 +151,8 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         }
         DropDown_IsNewCustomer.value = index;
         DropDown_IsNewCustomer.RefreshShownValue();
-
-        ProductId = data.ProductID;
-        if (ProductId != 0)
-        {
-            Text_ProductId.text = ProductId.ToString();
-        }
         ProductName = data.ProductName;
+        index = 0;
         if (!string.IsNullOrEmpty(ProductName))
         {
             for (int i = 0; i < DropDown_ProductName.options.Count; i++)
@@ -166,26 +163,30 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
                     break;
                 }
             }
-            DropDown_ProductName.value = index;
-            DropDown_ProductName.RefreshShownValue();
         }
-        ProductUnitPrice = data.UnitPrice;
+        DropDown_ProductName.value = index;
+        DropDown_ProductName.RefreshShownValue();
+        ProductName = DropDown_ProductName.options[index].text;
+
+        ProductId = SalesDataSystem.SystemDatas.ProductSysData.GetProductIdByName(ProductName);
+        if (ProductId != 0)
+        {
+            Text_ProductId.text = ProductId.ToString();
+        }
+
+        ProductUnitPrice = SalesDataSystem.SystemDatas.ProductSysData.GetProductPrice(ProductId);
         if (ProductUnitPrice != 0)
         {
             Input_ProductPrice.text = ProductUnitPrice.ToString();
         }
-        TransactionCount = data.SaleCount;
-        if (TransactionCount != 0)
-        {
-            Input_TransactionCount.text = TransactionCount.ToString();
-        }
 
+        TransactionCount = data.SaleCount;
+        Input_TransactionCount.text = TransactionCount.ToString();
         TotalSales = data.TotalPrice;
-        if (TotalSales != 0)
-        {
-            Input_TotalSales.text = TotalSales.ToString();
-        }
+        Input_TotalSales.text = TotalSales.ToString();
+
         SalePerson1 = data.SalesPerson1;
+        index = 0;
         if (!string.IsNullOrEmpty(SalePerson1))
         {
             for (int i = 0; i < DropDown_SalePerspon1.options.Count; i++)
@@ -196,10 +197,12 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
                     break;
                 }
             }
-            DropDown_SalePerspon1.value = index;
-            DropDown_SalePerspon1.RefreshShownValue();
         }
+        DropDown_SalePerspon1.value = index;
+        DropDown_SalePerspon1.RefreshShownValue();
+        SalePerson1 = DropDown_SalePerspon1.options[index].text;
         SalePerson2 = data.SalesPersion2;
+        index = 0;
         if (!string.IsNullOrEmpty(SalePerson2))
         {
             for (int i = 0; i < DropDown_SalePerson2.options.Count; i++)
@@ -210,9 +213,10 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
                     break;
                 }
             }
-            DropDown_SalePerson2.value = index;
-            DropDown_SalePerson2.RefreshShownValue();
         }
+        DropDown_SalePerson2.value = index;
+        DropDown_SalePerson2.RefreshShownValue();
+        SalePerson2 = DropDown_SalePerson2.options[index].text;
     }
 
     void OnDisable()

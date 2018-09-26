@@ -12,6 +12,7 @@ public class SingleSaleDataPrefabInfo : MonoBehaviour
     public Text Text_CustormerDetailInfo;
     public Text Text_IsNewCustomer;
     public Text Text_ProductID;
+    public Text Text_ProductName;
     public Text Text_UnitPrice;
     public Text Text_SaleCount;
     public Text Text_TotalPrice;
@@ -31,6 +32,7 @@ public class SingleSaleDataPrefabInfo : MonoBehaviour
         Text_CustormerDetailInfo.text = value.CustomerDetailInfo;
         Text_IsNewCustomer.text = value.IsNewCustomer ? "是" : "否";
         Text_ProductID.text = value.ProductID.ToString();
+        Text_ProductName.text = value.ProductName;
         Text_UnitPrice.text = value.UnitPrice.ToString();
         Text_SaleCount.text = value.SaleCount.ToString();
         Text_TotalPrice.text = value.TotalPrice.ToString();
