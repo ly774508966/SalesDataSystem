@@ -66,6 +66,7 @@ public class DailyDataSystem : SystemStepBase
             else
             {
                 singleDataInfosPrefabList[i].SetValue(singleSaleInfos[i]);
+                singleDataInfosPrefabList[i].gameObject.SetActive(true);
             }
         }
         if (curPrefabIndex < singleDataInfosPrefabList.Count)

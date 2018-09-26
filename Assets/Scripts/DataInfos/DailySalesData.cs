@@ -74,16 +74,6 @@ public class DailySalesData
         return storeDailyInfo;
     }
 
-    public List<StoreDailyInfo> CloneStoreDailyData()
-    {
-        List<StoreDailyInfo> newinfo = new List<StoreDailyInfo>();
-        for (int i = 0; i < AllStoreDailySaleData.Count; i++)
-        {
-            newinfo.Add(AllStoreDailySaleData[i].Clone());
-        }
-        return newinfo;
-    }
-
     public void Reset()
     {
         TotalSales = 0;

@@ -34,21 +34,21 @@ public class StoreDailyInfo
     /// </summary>
     public int TodyTransaction;
     /// <summary>
-    /// 本月累计成交数
-    /// </summary>
-    public int MonthTransaction;
-    /// <summary>
     /// 今日销售额
     /// </summary>
     public float TodaySales;
     /// <summary>
-    /// 今日成交产品
+    /// 本月累计成交数
     /// </summary>
-    public List<ProductTransactionInfo> TodayProductTransactions = new List<ProductTransactionInfo>();
+    public int MonthTransaction;
     /// <summary>
     /// 当月累计销售额
     /// </summary>
     public float MonthTotalSales;
+    /// <summary>
+    /// 今日成交产品
+    /// </summary>
+    public List<ProductTransactionInfo> TodayProductTransactions = new List<ProductTransactionInfo>();
     /// <summary>
     /// 完成率
     /// </summary>
@@ -91,16 +91,8 @@ public class StoreDailyInfo
         return trans;
     }
 
-    public StoreDailyInfo Clone()
+    public void Reset()
     {
-        StoreDailyInfo newInfo = new StoreDailyInfo();
-        newInfo.StoreID = StoreID;
-        newInfo.StoreName = StoreName;
-        newInfo.LeastSales = LeastSales;
-        newInfo.TargetSales = TargetSales;
-        newInfo.MonthEnterCustomerNubmer = MonthEnterCustomerNubmer;
-        newInfo.MonthTransaction = MonthTransaction;
-        newInfo.MonthTotalSales = MonthTotalSales;
-        return newInfo;
+
     }
 }

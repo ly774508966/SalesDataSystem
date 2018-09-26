@@ -83,7 +83,24 @@ public class DailySalesSystemData : SystemDataBase
             DailySalesData lastDayData = LoadLastDailyData(date);
             thisDayData.TotalSales = 0;
             thisDayData.MonthSaleDataToDate = lastDayData.MonthSaleDataToDate.Clone();
-            thisDayData.AllStoreDailySaleData = lastDayData.CloneStoreDailyData();
+            for (int i = 0; i < lastDayData.AllStoreDailySaleData.Count; i++)
+            {
+                StoreDailyInfo lastStoreDayInfo = lastDayData.AllStoreDailySaleData[i];
+                StoreDailyInfo todaystoreDayinfo = thisDayData.GetStoreDailyInfo(lastStoreDayInfo.StoreID);
+                todaystoreDayinfo.MonthEnterCustomerNubmer = lastStoreDayInfo.MonthEnterCustomerNubmer;
+                todaystoreDayinfo.MonthTransaction = lastStoreDayInfo.MonthTransaction;
+                todaystoreDayinfo.MonthTotalSales = lastStoreDayInfo.MonthTotalSales;
+            }
+            for (int i = 0; i < thisDayData.AllStoreDailySaleData.Count; i++)
+            {
+                StoreDailyInfo todayStoreDayInfo = thisDayData.AllStoreDailySaleData[i];
+                todayStoreDayInfo.TodaySales = 0;
+                todayStoreDayInfo.TodayProductTransactions.Clear();
+                todayStoreDayInfo.OldCustomerCout = 0;
+                todayStoreDayInfo.OldCustomerSales = 0;
+                todayStoreDayInfo.NewCustomerCount = 0;
+                todayStoreDayInfo.NewCustomerSales = 0;
+            }
         }
         for (int i = 0; i < thisDayData.AllSingleSalesData.Count; i++)
         {
