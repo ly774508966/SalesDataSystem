@@ -30,6 +30,11 @@ public class DailySalesData
     /// </summary>
     public MonthSalesData MonthSaleDataToDate = new MonthSalesData();
 
+    public DailySalesData()
+    {
+        InitAllStoreDailyInfos();
+    }
+
     public ProductTransactionInfo GetTransactionInfo(int productId, string productName)
     {
         ProductTransactionInfo trans = null;
@@ -72,6 +77,20 @@ public class DailySalesData
             AllStoreDailySaleData.Add(storeDailyInfo);
         }
         return storeDailyInfo;
+    }
+
+    private void InitAllStoreDailyInfos()
+    {
+        List<int> storeIDs = SalesDataSystem.SystemDatas.StoreSysData.GetStoreIdList();
+        foreach (var id in storeIDs)
+        {
+            StoreDailyInfo storeDailyInfo = new StoreDailyInfo();
+            storeDailyInfo.StoreID = id;
+            storeDailyInfo.StoreName = SalesDataSystem.SystemDatas.StoreSysData.GetStoreNameByID(id);
+            storeDailyInfo.LeastSales = SalesDataSystem.SystemDatas.StoreSysData.GetLeastSales(id);
+            storeDailyInfo.TargetSales = SalesDataSystem.SystemDatas.StoreSysData.GetTargetSales(id);
+            AllStoreDailySaleData.Add(storeDailyInfo);
+        }
     }
 
     public void Reset()

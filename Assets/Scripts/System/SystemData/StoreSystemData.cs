@@ -51,6 +51,16 @@ public class StoreSystemData : SystemDataBase
         return -1;
     }
 
+    public List<int> GetStoreIdList()
+    {
+        List<int> storeIds = new List<int>();
+        foreach (var s in allStoreInfosDict)
+        {
+            storeIds.Add(s.Value.StoreID);
+        }
+        return storeIds;
+    }
+
     public List<string> GetStoreNameList()
     {
         List<string> names = new List<string>();

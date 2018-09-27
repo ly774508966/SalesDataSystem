@@ -260,7 +260,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
     /// <returns></returns>
     private bool CheckIndexIsValid(int newIndex)
     {
-        List<SingleSalesData> singleSaleInfos = SalesDataSystem.SystemDatas.DailySysData.LoadData(curDate);
+        List<SingleSalesData> singleSaleInfos = SalesDataSystem.SystemDatas.DailySysData.LoadAllSingleProductData(curDate);
         for (int i = 0; i < singleSaleInfos.Count; i++)
         {
             if (singleSaleInfos[i].Index == newIndex)

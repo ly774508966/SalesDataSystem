@@ -15,20 +15,33 @@ public class DailySalesSystemData : SystemDataBase
     /// </summary>
     public override void InitData()
     {
+    }
+
+    public void LoadDailyData()
+    {
 
     }
 
-    public List<SingleSalesData> LoadData(string date)
+    public List<SingleSalesData> LoadAllSingleProductData(string date)
     {
         LoadLastDailyData(date);
-        if (allDailydataSaleDataDict.ContainsKey(date))
-            return allDailydataSaleDataDict[date].AllSingleSalesData;
-        else
-        {
-            DailySalesData record = ConfigDataManager.LoadDailyData(date);
-            allDailydataSaleDataDict[date] = record;
-            return record.AllSingleSalesData;
-        }
+        LoadDailyData(date);
+        return allDailydataSaleDataDict[date].AllSingleSalesData;
+    }
+
+    public List<StoreDailyInfo> LoadAllStoreDailyData(string date)
+    {
+        LoadLastDailyData(date);
+        LoadDailyData(date);
+        return allDailydataSaleDataDict[date].AllStoreDailySaleData;
+    }
+
+    public int GetLastDayMonthEnterCustomerNumber(string date, int storeID)
+    {
+        DailySalesData lastDayData = LoadLastDailyData(date);
+        if (lastDayData == null) return 0;
+        StoreDailyInfo storeinfo = lastDayData.GetStoreDailyInfo(storeID);
+        return storeinfo.MonthEnterCustomerNubmer;
     }
 
     public void AddSingleSaleData(string date, SingleSalesData info)
@@ -87,7 +100,7 @@ public class DailySalesSystemData : SystemDataBase
             {
                 StoreDailyInfo lastStoreDayInfo = lastDayData.AllStoreDailySaleData[i];
                 StoreDailyInfo todaystoreDayinfo = thisDayData.GetStoreDailyInfo(lastStoreDayInfo.StoreID);
-                todaystoreDayinfo.MonthEnterCustomerNubmer = lastStoreDayInfo.MonthEnterCustomerNubmer;
+                todaystoreDayinfo.MonthEnterCustomerNubmer = lastStoreDayInfo.MonthEnterCustomerNubmer + todaystoreDayinfo.TodayEnterCustomerNumber;
                 todaystoreDayinfo.MonthTransaction = lastStoreDayInfo.MonthTransaction;
                 todaystoreDayinfo.MonthTotalSales = lastStoreDayInfo.MonthTotalSales;
             }
@@ -142,6 +155,11 @@ public class DailySalesSystemData : SystemDataBase
             }
             #endregion
         }
+        for (int i = 0; i < thisDayData.AllStoreDailySaleData.Count; i++)
+        {
+            StoreDailyInfo todayStoreDayInfo = thisDayData.AllStoreDailySaleData[i];
+            todayStoreDayInfo.CompletionRate = todayStoreDayInfo.MonthTotalSales / todayStoreDayInfo.TargetSales;
+        }
     }
 
     public void SaveChange(string date)
@@ -163,15 +181,38 @@ public class DailySalesSystemData : SystemDataBase
         string day = date.Substring(6, 2);
         int intDay = int.Parse(day);
         if (intDay == 1) return null;
-        string lastDayDate = string.Format("{0}{1}{2}", year, month, (intDay - 1).ToString());
+        string newDay = (intDay - 1).ToString();
+        if (intDay <= 10)
+        {
+            newDay = "0" + newDay;
+        }
+        string lastDayDate = string.Format("{0}{1}{2}", year, month, newDay);
         return LoadDailyData(lastDayDate);
     }
 
+    /// <summary>
+    /// 加载每日数据
+    /// </summary>
+    /// <param name="date"></param>
+    /// <returns></returns>
     private DailySalesData LoadDailyData(string date)
     {
         if (!allDailydataSaleDataDict.ContainsKey(date))
         {
-            allDailydataSaleDataDict[date] = ConfigDataManager.LoadDailyData(date);
+            bool isCreate = false;
+            DailySalesData dailySalesData = ConfigDataManager.LoadDailyData(date);
+            if (dailySalesData == null)
+            {
+                dailySalesData = new DailySalesData();
+                dailySalesData.Date = date;
+                isCreate = true;
+            }
+            allDailydataSaleDataDict[date] = dailySalesData;
+            if (isCreate)
+            {
+                CalculateData(date);
+                SaveChange(date);
+            }
         }
         return allDailydataSaleDataDict[date];
     }

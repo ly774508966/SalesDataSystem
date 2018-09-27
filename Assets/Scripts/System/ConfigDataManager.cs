@@ -146,9 +146,7 @@ public class ConfigDataManager
         }
         else
         {
-            DailySalesData dailydata = new DailySalesData();
-            dailydata.Date = date;
-            return dailydata;
+            return null;
         }
     }
 
