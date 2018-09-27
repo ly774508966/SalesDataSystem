@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public enum eDailiPanelType
-{
-    ProductInfo,
-    StoreDailyData,
-}
-
 public class DailyDataSystem : SystemStepBase
 {
     public GameObject ProductInfoPanel;
@@ -46,6 +40,7 @@ public class DailyDataSystem : SystemStepBase
 
     private eDailiPanelType curDailyInfoType = eDailiPanelType.ProductInfo;
 
+    #region DailySystem
     private void OnEnable()
     {
         CurDateTime = System.DateTime.Now.ToString("yyyyMMdd");
@@ -99,6 +94,13 @@ public class DailyDataSystem : SystemStepBase
         }
     }
 
+    public void OnClickExportDailyInfo()
+    {
+        SalesDataSystem.SystemDatas.DailySysData.ExportData(CurDateTime);
+        SalesDataSystem.TipsShow.ShowTipsInfo("导出数据成功");
+    }
+
+    #endregion
 
     #region 今日产品信息
     public void RefreshProductDailyDataShow()

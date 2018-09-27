@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
+﻿using System.Collections.Generic;
 
 public class StoreSystemData : SystemDataBase
 {
@@ -21,12 +18,12 @@ public class StoreSystemData : SystemDataBase
         AllSalePersonInfos = ConfigDataManager.SalePersonList;
     }
 
-    public void AddProduct(StoreInfo info)
+    public void AddStore(StoreInfo info)
     {
         allStoreInfosDict[info.StoreID] = info;
     }
 
-    public void DeleteProduct(int storeID)
+    public void DeleteStore(int storeID)
     {
         allStoreInfosDict.Remove(storeID);
     }

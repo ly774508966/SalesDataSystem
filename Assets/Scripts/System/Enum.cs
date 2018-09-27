@@ -11,3 +11,26 @@ public enum eSystemStep
     ProductInfo,
     StoreInfo,
 }
+
+public enum eDailiPanelType
+{
+    ProductInfo,
+    StoreDailyData,
+}
+
+public enum eProductType
+{
+    Exclusive,      //尊享
+    Classic,        //经典
+    Glory,          //荣耀
+    Single,         //单独的一类
+    DrySwallow,     //干燕盏
+    None,
+}
+
+public enum eStoreType
+{
+    Store,
+    BroadCast,
+    AfterSales,
+}

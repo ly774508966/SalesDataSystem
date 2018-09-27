@@ -71,6 +71,18 @@ public class ProductSystemData : SystemDataBase
         return -1;
     }
 
+    public eProductType GetProductTypeByID(int id)
+    {
+        foreach (var p in allProductInfosDict)
+        {
+            if (p.Value.ProductID == id)
+            {
+                return p.Value.ProductType;
+            }
+        }
+        return eProductType.None;
+    }
+
     public void SaveChange()
     {
         List<ProductInfo> newData = new List<ProductInfo>();

@@ -17,4 +17,8 @@ public class ProductInfo
     /// 产品单价
     /// </summary>
     public int UnitPrice;
+    /// <summary>
+    /// 产品分类
+    /// </summary>
+    public eProductType ProductType;
 }

@@ -21,4 +21,8 @@ public class StoreInfo
     /// 目标销售额
     /// </summary>
     public int TargetSales;
+    /// <summary>
+    /// 门面的种类
+    /// </summary>
+    public eStoreType StoreType;
 }

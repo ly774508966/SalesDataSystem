@@ -1,0 +1,19 @@
+{StoreIndex}、{StoreName}销售情况：
+{Month}月保底{LeastSales}万，目标{TargetSales}万
+{Year}.{Month}.{Day}销售情况:
+ 一，广播进线
+今日进线人数：{BroadCastEnter}通（{BroadCastEnterInfo}）
+目前广告版本：答谢篇和心意篇
+本月累计进线人数:{MonthBroadCastEnterCount}人（男：{MonthBroadCastEnterManCount}女：{MonthBroadCastEnterWoManCount}）
+今日进线成交金额：{TodayBroadCastTotalSales}元
+今日进线成交产品：{{TodayBroadCastProductionInfo}}
+累计进线成交金额：{MonthBroadCastTotalSales}元
+二，售后维护
+今日成交人数：{AfaterSaleTransactionCount}人
+今日成交金额：{TodayAfaterSaleTotalSales}
+今日成交产品：{TodayAfaterSaleProductionInfo}
+ 
+本月累计金额：{MonthTotalSales}元
+老客户销售金额:{OldCustomerSales}元  ({OldCustomerCout}人）
+新客户销售金额:{NewCustomerSales}元（{NewCustomerCount}人）
+完成率{CompletionRate}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class ConfigDataManager
 {
@@ -18,7 +19,7 @@ public class ConfigDataManager
 
     private static void LoadProductInfo()
     {
-        string persistPath = Application.persistentDataPath + "Config/ProductCfg.txt";
+        string persistPath = Application.persistentDataPath + "/Config/ProductCfg.txt";
         if (File.Exists(persistPath))
         {
             string info = File.ReadAllText(persistPath);
@@ -57,10 +58,10 @@ public class ConfigDataManager
 
     public static void SaveProductInfo(List<ProductInfo> newInfo)
     {
-        ProductCfg newCfg = new ProductCfg();
+        ProductCfgNormal newCfg = new ProductCfgNormal();
         newCfg.Products = newInfo;
         string info = JsonUtility.ToJson(newCfg);
-        string persistPath = Application.persistentDataPath + "Config/ProductCfg.txt";
+        string persistPath = Application.persistentDataPath + "/Config/ProductCfg.txt";
         CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadProductInfo();
@@ -68,7 +69,7 @@ public class ConfigDataManager
 
     private static void LoadStoreInfo()
     {
-        string persistPath = Application.persistentDataPath + "Config/StoreCfg.txt";
+        string persistPath = Application.persistentDataPath + "/Config/StoreCfg.txt";
         if (File.Exists(persistPath))
         {
             string info = File.ReadAllText(persistPath);
@@ -90,10 +91,10 @@ public class ConfigDataManager
 
     public static void SaveStoreInfo(List<StoreInfo> newinfo)
     {
-        StoreCfg newCfg = new StoreCfg();
+        StoreCfgNormal newCfg = new StoreCfgNormal();
         newCfg.Stores = newinfo;
         string info = JsonUtility.ToJson(newCfg);
-        string persistPath = Application.persistentDataPath + "Config/StoreCfg.txt";
+        string persistPath = Application.persistentDataPath + "/Config/StoreCfg.txt";
         CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadStoreInfo();
@@ -101,7 +102,7 @@ public class ConfigDataManager
 
     private static void LoadSalePersonInfo()
     {
-        string persistPath = Application.persistentDataPath + "Config/SalePersonCfg.txt";
+        string persistPath = Application.persistentDataPath + "/Config/SalePersonCfg.txt";
         if (File.Exists(persistPath))
         {
             string info = File.ReadAllText(persistPath);
@@ -126,7 +127,7 @@ public class ConfigDataManager
         SalePersonCfg newCfg = new SalePersonCfg();
         newCfg.SalePerson = newinfo;
         string info = JsonUtility.ToJson(newCfg);
-        string persistPath = Application.persistentDataPath + "Config/SalePersonCfg.txt";
+        string persistPath = Application.persistentDataPath + "/Config/SalePersonCfg.txt";
         CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadStoreInfo();
@@ -159,6 +160,116 @@ public class ConfigDataManager
         CreateDir(persistPath);
         string info = JsonUtility.ToJson(newinfo);
         File.WriteAllText(persistPath, info);
+    }
+
+    public static void ExportDailyData(string date, DailySalesData newinfo)
+    {
+        string year = date.Substring(0, 4);
+        string month = date.Substring(4, 2);
+        string day = date.Substring(6, 2);
+        string persistPath = string.Format("{0}/{1}/{2}/{3}/{4}ExportData.txt", Application.persistentDataPath, "HistoryData", year, month, day);
+        CreateDir(persistPath);
+        string DailySalesDataMonthPart = (Resources.Load("Configs/DailySalesDataMonthPart") as TextAsset).text;
+        string DailySalesDataStorePart = (Resources.Load("Configs/DailySalesDataStorePart") as TextAsset).text;
+        string DailySalesDataCustomerServicePart = (Resources.Load("Configs/DailySalesDataCustomerServicePart") as TextAsset).text;
+        string productTransactionInfo = GetMonthProductTransactionInfo(newinfo);
+        MonthSalesData thisMonthData = newinfo.MonthSaleDataToDate;
+
+        System.Text.StringBuilder strb = new System.Text.StringBuilder(500);
+        string exportInfo = null;
+        string exportmonthInfo = string.Format(DailySalesDataMonthPart, year, month, day, newinfo.TotalSales, productTransactionInfo,
+           thisMonthData.TotalSales, thisMonthData.NewCustomerTransactions, thisMonthData.NewCustomerSales, thisMonthData.OldCustomerTransactions,
+           thisMonthData.OldCustomerSales);
+        strb.Append(exportmonthInfo);
+
+        for (int i = 0; i < newinfo.AllStoreDailySaleData.Count; i++)
+        {
+            StoreDailyInfo sdi = newinfo.AllStoreDailySaleData[i];
+            string storeproductInfo = GetStoreProductTransactionInfo(sdi);
+            string exportStoreDailyInfo = string.Format(DailySalesDataStorePart, sdi.StoreID, sdi.StoreName, month, sdi.LeastSales, sdi.TargetSales,
+                year,month,day, sdi.TodayEnterCustomerNumber, sdi.MonthEnterCustomerNubmer, sdi.TodyTransaction,sdi.MonthTransaction, sdi.TodaySales, storeproductInfo,
+                sdi.MonthTotalSales, (sdi.CompletionRate * 100).ToString("F2"), sdi.OldCustomerSales, sdi.OldCustomerCount,
+                sdi.NewCustomerSales, sdi.NewCustomerCount);
+            strb.Append(exportStoreDailyInfo);
+        }
+
+        exportInfo = strb.ToString();
+        File.WriteAllText(persistPath, exportInfo);
+    }
+
+    /// <summary>
+    /// 格式化销售产品数据
+    /// </summary>
+    /// <param name="newinfo"></param>
+    /// <returns></returns>
+    private static string GetMonthProductTransactionInfo(DailySalesData newinfo)
+    {
+        string productTransactionInfo = string.Empty;
+        Dictionary<string, string> productTransactionDict = new Dictionary<string, string>();
+        for (int i = 0; i < newinfo.ProductTransactionInfos.Count; i++)
+        {
+            ProductTransactionInfo trans = newinfo.ProductTransactionInfos[i];
+            eProductType productType = SalesDataSystem.SystemDatas.ProductSysData.GetProductTypeByID(trans.ProductId);
+            string key = null;
+            string addValue = null;
+            switch (productType)
+            {
+                case eProductType.Classic:
+                    key = "经典款：";
+                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    break;
+                case eProductType.Glory:
+                    key = "荣耀款：";
+                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    break;
+                case eProductType.Exclusive:
+                    key = "尊享款：";
+                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    break;
+                case eProductType.DrySwallow:
+                    key = "干燕盏：";
+                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    break;
+                case eProductType.Single:
+                    key = trans.ProductName + "：";
+                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    break;
+                case eProductType.None:
+                    break;
+                default:
+                    break;
+            }
+            if (!string.IsNullOrEmpty(key))
+            {
+                if (!productTransactionDict.ContainsKey(key))
+                {
+                    productTransactionDict[key] = "";
+                }
+                productTransactionDict[key] += addValue;
+            }
+        }
+
+        System.Text.StringBuilder strb = new System.Text.StringBuilder(100);
+        foreach (var p in productTransactionDict)
+        {
+            strb.Append(p.Key);
+            strb.Append(p.Value);
+        }
+        productTransactionInfo = strb.ToString();
+        return productTransactionInfo;
+    }
+
+    private static string GetStoreProductTransactionInfo(StoreDailyInfo storeinfo)
+    {
+        string productTransactionInfo = string.Empty;
+        System.Text.StringBuilder strb = new System.Text.StringBuilder(100);
+        foreach (var p in storeinfo.TodayProductTransactions)
+        {
+            string info = string.Format("{0} * {1}份、", p.ProductName, p.TransactionCount);
+            strb.Append(info);
+        }
+        productTransactionInfo = strb.ToString();
+        return productTransactionInfo;
     }
 
     private static void  CreateDir(string path)

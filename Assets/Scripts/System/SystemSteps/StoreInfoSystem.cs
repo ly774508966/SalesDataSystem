@@ -61,4 +61,9 @@ public class StoreInfoSystem : SystemStepBase
         storeInfoPrefabList.Add(prefabInfo);
         newGo.SetActive(true);
     }
+
+    public void OnClickSaveData()
+    {
+        SalesDataSystem.SystemDatas.StoreSysData.SaveChange();
+    }
 }

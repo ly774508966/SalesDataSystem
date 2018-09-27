@@ -56,7 +56,7 @@ public class StoreDailyInfo
     /// <summary>
     /// 老顾客数量
     /// </summary>
-    public int OldCustomerCout;
+    public int OldCustomerCount;
     /// <summary>
     /// 老顾客销售额
     /// </summary>
@@ -89,10 +89,5 @@ public class StoreDailyInfo
             TodayProductTransactions.Add(trans);
         }
         return trans;
-    }
-
-    public void Reset()
-    {
-
     }
 }

@@ -46,12 +46,7 @@ public class DailySalesSystemData : SystemDataBase
 
     public void AddSingleSaleData(string date, SingleSalesData info)
     {
-        if (!allDailydataSaleDataDict.ContainsKey(date))
-        {
-            DailySalesData dailydata = new DailySalesData();
-            dailydata.Date = date;
-            allDailydataSaleDataDict[date] = dailydata;
-        }
+        LoadDailyData(date);
         for (int i = 0; i < allDailydataSaleDataDict[date].AllSingleSalesData.Count; i++)
         {
             SingleSalesData data = allDailydataSaleDataDict[date].AllSingleSalesData[i];
@@ -103,16 +98,16 @@ public class DailySalesSystemData : SystemDataBase
                 todaystoreDayinfo.MonthEnterCustomerNubmer = lastStoreDayInfo.MonthEnterCustomerNubmer + todaystoreDayinfo.TodayEnterCustomerNumber;
                 todaystoreDayinfo.MonthTransaction = lastStoreDayInfo.MonthTransaction;
                 todaystoreDayinfo.MonthTotalSales = lastStoreDayInfo.MonthTotalSales;
+                todaystoreDayinfo.OldCustomerCount = lastStoreDayInfo.OldCustomerCount; ;
+                todaystoreDayinfo.OldCustomerSales = lastStoreDayInfo.OldCustomerSales;
+                todaystoreDayinfo.NewCustomerCount = lastStoreDayInfo.NewCustomerCount;
+                todaystoreDayinfo.NewCustomerSales = lastStoreDayInfo.NewCustomerSales;
             }
             for (int i = 0; i < thisDayData.AllStoreDailySaleData.Count; i++)
             {
                 StoreDailyInfo todayStoreDayInfo = thisDayData.AllStoreDailySaleData[i];
                 todayStoreDayInfo.TodaySales = 0;
                 todayStoreDayInfo.TodayProductTransactions.Clear();
-                todayStoreDayInfo.OldCustomerCout = 0;
-                todayStoreDayInfo.OldCustomerSales = 0;
-                todayStoreDayInfo.NewCustomerCount = 0;
-                todayStoreDayInfo.NewCustomerSales = 0;
             }
         }
         for (int i = 0; i < thisDayData.AllSingleSalesData.Count; i++)
@@ -137,7 +132,7 @@ public class DailySalesSystemData : SystemDataBase
             }
             else
             {
-                storeDayInfo.OldCustomerCout += 1;
+                storeDayInfo.OldCustomerCount += 1;
                 storeDayInfo.OldCustomerSales += singleSaleData.TotalPrice;
             }
             #endregion
@@ -164,14 +159,15 @@ public class DailySalesSystemData : SystemDataBase
 
     public void SaveChange(string date)
     {
-        if (!allDailydataSaleDataDict.ContainsKey(date))
-        {
-            DailySalesData dailydata = new DailySalesData();
-            dailydata.Date = date;
-            allDailydataSaleDataDict[date] = dailydata;
-        }
+        LoadDailyData(date);
         CalculateData(date);
         ConfigDataManager.SaveDailyData(date, allDailydataSaleDataDict[date]);
+    }
+
+    public void ExportData(string date)
+    {
+        DailySalesData dailydata = LoadDailyData(date);
+        ConfigDataManager.ExportDailyData(date, dailydata);
     }
 
     public DailySalesData LoadLastDailyData(string date)
