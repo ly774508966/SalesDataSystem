@@ -67,7 +67,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
 
         List<Dropdown.OptionData> salePersonInfos = new List<Dropdown.OptionData>();
         salePersonInfos.Add(new Dropdown.OptionData("None"));
-        foreach (var s in SalesDataSystem.SystemDatas.StoreSysData.AllSalePersonInfos)
+        foreach (var s in SalesDataSystem.SystemDatas.SalesPersonData.AllSalePersonInfos)
         {
             salePersonInfos.Add(new Dropdown.OptionData(s.Name));
         }

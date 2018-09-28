@@ -31,4 +31,8 @@ public class MenuSystem : SystemStepBase
         SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.StoreInfo);
     }
 
+    public void OnClickSalesPersonInfo()
+    {
+        SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.SalePersonInfo);
+    }
 }

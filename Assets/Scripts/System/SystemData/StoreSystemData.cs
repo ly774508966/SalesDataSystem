@@ -7,15 +7,12 @@ public class StoreSystemData : SystemDataBase
     /// </summary>
     public Dictionary<int, StoreInfo> allStoreInfosDict = new Dictionary<int, StoreInfo>();
 
-    public List<SalePersonInfo> AllSalePersonInfos = new List<SalePersonInfo>();
-
     /// <summary>
     /// 初始化数据
     /// </summary>
     public override void InitData()
     {
         allStoreInfosDict = ConfigDataManager.StoreInfosDict;
-        AllSalePersonInfos = ConfigDataManager.SalePersonList;
     }
 
     public void AddStore(StoreInfo info)

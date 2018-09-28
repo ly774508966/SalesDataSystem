@@ -124,7 +124,7 @@ public class ConfigDataManager
 
     public static void SaveSalePersonInfo(List<SalePersonInfo> newinfo)
     {
-        SalePersonCfg newCfg = new SalePersonCfg();
+        SalePersonCfgNormal newCfg = new SalePersonCfgNormal();
         newCfg.SalePerson = newinfo;
         string info = JsonUtility.ToJson(newCfg);
         string persistPath = Application.persistentDataPath + "/Config/SalePersonCfg.txt";

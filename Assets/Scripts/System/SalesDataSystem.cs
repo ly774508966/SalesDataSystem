@@ -30,6 +30,7 @@ public class SalesDataSystem : MonoBehaviour
     public GameObject DailyData;
     public GameObject ProductInfo;
     public GameObject StoreInfo;
+    public GameObject SalePersonInfo;
 
     public eSystemStep InitStep;
 
@@ -71,6 +72,7 @@ public class SalesDataSystem : MonoBehaviour
         systemStepDict[eSystemStep.DailyData] = DailyData.GetComponent<DailyDataSystem>();
         systemStepDict[eSystemStep.ProductInfo] = ProductInfo.GetComponent<ProductInfoSystem>();
         systemStepDict[eSystemStep.StoreInfo] = StoreInfo.GetComponent<StoreInfoSystem>();
+        systemStepDict[eSystemStep.SalePersonInfo] = SalePersonInfo.GetComponent<SalesPersonInfoSystem>();
     }
 
     public void ChangeSystemStep(eSystemStep nextStep)

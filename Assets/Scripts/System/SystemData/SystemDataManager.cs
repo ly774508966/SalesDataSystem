@@ -8,6 +8,7 @@ public class SystemDataManager
     public StoreSystemData StoreSysData;
     public DailySalesSystemData DailySysData;
     public HistorySalesSystemData HistoryData;
+    public SalesPersonSystemData SalesPersonData;
 
     public void Init()
     {
@@ -19,5 +20,7 @@ public class SystemDataManager
         DailySysData.InitData();
         HistoryData = new HistorySalesSystemData();
         HistoryData.InitData();
+        SalesPersonData = new SalesPersonSystemData();
+        SalesPersonData.InitData();
     }
 }

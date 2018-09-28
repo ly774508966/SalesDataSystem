@@ -10,6 +10,7 @@ public enum eSystemStep
     DailyData,
     ProductInfo,
     StoreInfo,
+    SalePersonInfo,
 }
 
 public enum eDailiPanelType

@@ -6,6 +6,5 @@ using UnityEngine;
 [System.Serializable]
 public class SalePersonCfg : ScriptableObject
 {
-
     public List<SalePersonInfo> SalePerson = new List<SalePersonInfo>();
 }

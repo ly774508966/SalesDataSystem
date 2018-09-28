@@ -12,25 +12,133 @@ MonoBehaviour:
   m_Name: SalePersonCfg
   m_EditorClassIdentifier: 
   SalePerson:
-  - Name: "\u66F9\u6C38\u6885"
-  - Name: "\u4F55\u79C0"
-  - Name: "\u5218\u7EA2"
-  - Name: "\u6731\u5E86\u6885"
-  - Name: "\u9EC4\u5A07\u5A07"
-  - Name: "\u5F6D\u91D1\u5A23"
-  - Name: "\u8881\u4E1C\u6885"
-  - Name: "\u6797\u5251\u5EB8"
-  - Name: "\u5F90\u73B2"
-  - Name: "\u5F20\u6625\u971E"
-  - Name: "\u4F59\u6167\u5A55"
-  - Name: "\u53F2\u661F\u51E4"
-  - Name: "\u65F6\u5A07\u5A07"
-  - Name: "\u66FE\u5C1A\u66F2"
-  - Name: "\u8096\u6587\u6E05"
-  - Name: "\u5F20\u6765\u73CD"
-  - Name: "\u7A0B\u654F"
-  - Name: "\u4E25\u7389\u51E4"
-  - Name: "\u80E1\u68A6\u5A1F"
-  - Name: "\u9648\u6708\u4E91"
-  - Name: "\u6C64\u82CF\u6797"
-  - Name: "\u9AD8\u96EA"
+  - SalePsersonID: 1
+    Name: "\u4F55\u79C0"
+    StoreName: "\u5BA2\u670D\u90E8"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 2
+    Name: "\u66F9\u6CF3\u6885"
+    StoreName: "\u5BA2\u670D\u90E8"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 3
+    Name: "\u9EC4\u5A07\u5A07"
+    StoreName: "\u5FB7\u57FA\u5E7F\u573A\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 4
+    Name: "\u5218\u7EA2"
+    StoreName: "\u6CB3\u897F\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 5
+    Name: "\u7A0B\u654F"
+    StoreName: "\u6CB3\u897F\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 6
+    Name: "\u53F2\u661F\u51E4"
+    StoreName: "\u65B0\u8857\u53E3\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 7
+    Name: "\u6731\u5E86\u6885"
+    StoreName: "\u91D1\u5965\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 8
+    Name: "\u6797\u5251\u5EB8"
+    StoreName: "\u5FB7\u57FA\u5E7F\u573A\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 9
+    Name: "\u8881\u51AC\u6885"
+    StoreName: "\u6CB3\u897F\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 10
+    Name: "\u65F6\u5A07\u5A07"
+    StoreName: "\u5FB7\u57FA\u5E7F\u573A\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 11
+    Name: "\u5F20\u6625\u971E"
+    StoreName: "\u5C71\u59C6\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 12
+    Name: "\u5F6D\u91D1\u5A23"
+    StoreName: "\u65B0\u8857\u53E3\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 13
+    Name: "\u4F59\u6167\u5A55"
+    StoreName: "\u4E2D\u592E\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 14
+    Name: "\u5F90\u73B2"
+    StoreName: "\u91D1\u5965\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 15
+    Name: "\u66FE\u5C1A\u66F2"
+    StoreName: "\u65B0\u8857\u53E3\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 16
+    Name: "\u7A0B\u6708\u4E91"
+    StoreName: "\u5C71\u59C6\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 17
+    Name: "\u4E25\u7389\u51E4"
+    StoreName: "\u4E2D\u592E\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 18
+    Name: "\u5F20\u6765\u73CD"
+    StoreName: "BHG\u8D85\u5E02\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 19
+    Name: "\u8096\u6587\u6E05"
+    StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 20
+    Name: "\u9AD8\u96EA"
+    StoreName: "BHG\u8D85\u5E02\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 21
+    Name: "\u80E1\u68A6\u5A1F"
+    StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 22
+    Name: "\u6C64\u82CF\u6797"
+    StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 23
+    Name: "\u738B\u5170\u5170"
+    StoreName: "\u5FB7\u57FA\u5E7F\u573A\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 24
+    Name: "\u5708\u5C42"
+    StoreName: "\u5708\u5C42"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 25
+    Name: "\u5F90\u9759"
+    StoreName: "\u5C71\u59C6\u5E97"
+    LeastSales: 0
+    TargetSales: 0
+  - SalePsersonID: 26
+    Name: "\u7EAA\u840D"
+    StoreName: "\u4E2D\u592E\u5E97"
+    LeastSales: 0
+    TargetSales: 0

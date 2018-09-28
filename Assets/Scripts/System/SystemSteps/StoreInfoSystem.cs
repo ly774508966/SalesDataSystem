@@ -28,7 +28,7 @@ public class StoreInfoSystem : SystemStepBase
     private void UpdateStoreShow()
     {
         List<StoreInfo> storeInfos = new List<StoreInfo>();
-        foreach (var s in ConfigDataManager.StoreInfosDict)
+        foreach (var s in SalesDataSystem.SystemDatas.StoreSysData.allStoreInfosDict)
         {
             storeInfos.Add(s.Value);
         }
