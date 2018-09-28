@@ -8,6 +8,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
     public InputField Input_Index;
     public Text Text_StoreID;
     public Dropdown DropDown_StoreName;
+    public InputField Input_TransactionPercent;
     public InputField Input_CustomerName;
     public InputField Input_CustomerDetailInfo;
     public Dropdown DropDown_IsNewCustomer;
@@ -22,6 +23,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
     public int Index;
     public int StoreID;
     public string StoreName;
+    public float TransactionPercent;
     public string CustomerName;
     public string CustomerDetailInfo;
     public bool IsNewCustomer;
@@ -81,6 +83,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         DropDown_StoreName.value = 0;
         DropDown_StoreName.RefreshShownValue();
         Input_CustomerName.text = null;
+        Input_TransactionPercent.text = null;
         Input_CustomerDetailInfo.text = null;
         DropDown_IsNewCustomer.value = 0;
         DropDown_IsNewCustomer.RefreshShownValue();
@@ -134,6 +137,8 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         {
             Input_CustomerName.text = CustomerName;
         }
+        TransactionPercent = data.TransactionPercent;
+        Input_TransactionPercent.text = TransactionPercent.ToString();
         CustomerDetailInfo = data.CustomerDetailInfo;
         if (!string.IsNullOrEmpty(CustomerDetailInfo))
         {
@@ -229,6 +234,7 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         prefabdata.Index = Index;
         prefabdata.StoreID = StoreID;
         prefabdata.StoreName = StoreName;
+        prefabdata.TransactionPercent = TransactionPercent;
         prefabdata.CustomerName = CustomerName;
         prefabdata.CustomerDetailInfo = CustomerDetailInfo;
         prefabdata.IsNewCustomer = IsNewCustomer;
@@ -277,6 +283,11 @@ public class EditorSingleDataPrefabInfo : MonoBehaviour
         StoreName = data.text;
         StoreID = SalesDataSystem.SystemDatas.StoreSysData.GetStoreIDByName(StoreName);
         Text_StoreID.text = StoreID.ToString();
+    }
+
+    public void OnTransactionPercentChanged(string value)
+    {
+        TransactionPercent = float.Parse(value);
     }
 
     public void OnCustomerNameChanged(string value)

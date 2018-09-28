@@ -8,6 +8,7 @@ public class SingleSaleDataPrefabInfo : MonoBehaviour
     public Text Text_Index;
     public Text Text_StoreID;
     public Text Text_StoreName;
+    public Text Text_Transactionpercent;
     public Text Text_CustomerName;
     public Text Text_CustormerDetailInfo;
     public Text Text_IsNewCustomer;
@@ -28,6 +29,7 @@ public class SingleSaleDataPrefabInfo : MonoBehaviour
         Text_Index.text = value.Index.ToString();
         Text_StoreID.text = value.StoreID.ToString();
         Text_StoreName.text = value.StoreName;
+        Text_Transactionpercent.text = value.TransactionPercent.ToString();
         Text_CustomerName.text = value.CustomerName;
         Text_CustormerDetailInfo.text = value.CustomerDetailInfo;
         Text_IsNewCustomer.text = value.IsNewCustomer ? "是" : "否";

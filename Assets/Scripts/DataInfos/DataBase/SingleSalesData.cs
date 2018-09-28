@@ -18,6 +18,10 @@ public class SingleSalesData
     /// </summary>
     public string StoreName;
     /// <summary>
+    /// 成交比例，用于一个成交由好几个门店达成
+    /// </summary>
+    public float TransactionPercent = 1f;
+    /// <summary>
     /// 顾客名称
     /// </summary>
     public string CustomerName;

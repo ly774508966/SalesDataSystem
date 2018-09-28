@@ -12,7 +12,7 @@ public class MonthSalesData
     /// <summary>
     /// 新客户成交数
     /// </summary>
-    public int NewCustomerTransactions;
+    public float NewCustomerTransactions;
     /// <summary>
     /// 新客户成交金额
     /// </summary>
@@ -20,7 +20,7 @@ public class MonthSalesData
     /// <summary>
     /// 老客户成交数
     /// </summary>
-    public int OldCustomerTransactions;
+    public float OldCustomerTransactions;
     /// <summary>
     /// 老客户成交金额
     /// </summary>

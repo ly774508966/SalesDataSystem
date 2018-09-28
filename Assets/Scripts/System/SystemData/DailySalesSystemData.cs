@@ -102,6 +102,7 @@ public class DailySalesSystemData : SystemDataBase
                 todaystoreDayinfo.OldCustomerSales = lastStoreDayInfo.OldCustomerSales;
                 todaystoreDayinfo.NewCustomerCount = lastStoreDayInfo.NewCustomerCount;
                 todaystoreDayinfo.NewCustomerSales = lastStoreDayInfo.NewCustomerSales;
+                todaystoreDayinfo.CompletionRate = lastStoreDayInfo.CompletionRate;
             }
             for (int i = 0; i < thisDayData.AllStoreDailySaleData.Count; i++)
             {
@@ -140,12 +141,12 @@ public class DailySalesSystemData : SystemDataBase
             thisDayData.MonthSaleDataToDate.TotalSales += singleSaleData.TotalPrice;
             if (singleSaleData.IsNewCustomer)
             {
-                thisDayData.MonthSaleDataToDate.NewCustomerTransactions += 1;
+                thisDayData.MonthSaleDataToDate.NewCustomerTransactions += (1 * singleSaleData.TransactionPercent);
                 thisDayData.MonthSaleDataToDate.NewCustomerSales += singleSaleData.TotalPrice;
             }
             else
             {
-                thisDayData.MonthSaleDataToDate.OldCustomerTransactions += 1;
+                thisDayData.MonthSaleDataToDate.OldCustomerTransactions += (1 * singleSaleData.TransactionPercent);
                 thisDayData.MonthSaleDataToDate.OldCustomerSales += singleSaleData.TotalPrice;
             }
             #endregion
