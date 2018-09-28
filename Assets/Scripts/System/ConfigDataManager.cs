@@ -186,7 +186,7 @@ public class ConfigDataManager
         {
             StoreDailyInfo sdi = newinfo.AllStoreDailySaleData[i];
             string storeproductInfo = GetStoreProductTransactionInfo(sdi);
-            string exportStoreDailyInfo = string.Format(DailySalesDataStorePart, sdi.StoreID, sdi.StoreName, month, sdi.LeastSales, sdi.TargetSales,
+            string exportStoreDailyInfo = string.Format(DailySalesDataStorePart, sdi.StoreID, sdi.StoreName, month, sdi.LeastSales / 10000f, sdi.TargetSales / 10000f,
                 year,month,day, sdi.TodayEnterCustomerNumber, sdi.MonthEnterCustomerNubmer, sdi.TodyTransaction,sdi.MonthTransaction, sdi.TodaySales, storeproductInfo,
                 sdi.MonthTotalSales, (sdi.CompletionRate * 100).ToString("F2"), sdi.OldCustomerSales, sdi.OldCustomerCount,
                 sdi.NewCustomerSales, sdi.NewCustomerCount);
