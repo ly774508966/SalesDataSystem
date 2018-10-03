@@ -17,6 +17,7 @@ public enum eDailiPanelType
 {
     ProductInfo,
     StoreDailyData,
+    SalesPersonRank,
 }
 
 public enum eProductType

@@ -26,13 +26,25 @@ public class DailySalesData
     /// </summary>
     public List<StoreDailyInfo> AllStoreDailySaleData = new List<StoreDailyInfo>();
     /// <summary>
+    /// 销售排名
+    /// </summary>
+    public List<SalesPersonRankInfo> AllSalesPersonRankInfos = new List<SalesPersonRankInfo>();
+    /// <summary>
     /// 本月至今日的销售数据
     /// </summary>
     public MonthSalesData MonthSaleDataToDate = new MonthSalesData();
 
     public DailySalesData()
     {
+        InitDataStoreAndRanking();
+    }
+
+    public void InitDataStoreAndRanking()
+    {
+        AllStoreDailySaleData.Clear();
+        AllSalesPersonRankInfos.Clear();
         InitAllStoreDailyInfos();
+        InitAllSalePersonRankInfo();
     }
 
     public ProductTransactionInfo GetTransactionInfo(int productId, string productName)
@@ -93,11 +105,53 @@ public class DailySalesData
         }
     }
 
+    private void InitAllSalePersonRankInfo()
+    {
+        foreach (var s in SalesDataSystem.SystemDatas.SalesPersonData.AllSalePersonInfos)
+        {
+            SalesPersonRankInfo salepersonRankinfo = new SalesPersonRankInfo();
+            salepersonRankinfo.StoreName = s.StoreName;
+            salepersonRankinfo.SalePersonID = s.SalePsersonID;
+            salepersonRankinfo.SalesPsersonName = s.Name;
+            salepersonRankinfo.LeastSales = s.LeastSales;
+            salepersonRankinfo.TargetSales = s.TargetSales;
+            salepersonRankinfo.Ranking = 0;
+            salepersonRankinfo.PerformanceSales = 0;
+            salepersonRankinfo.CompleteRate = 0;
+            AllSalesPersonRankInfos.Add(salepersonRankinfo);
+        }
+    }
+
+    public SalesPersonRankInfo GetSalePersonRankInfo(int sPersonId)
+    {
+        SalesPersonRankInfo info = null;
+        for (int i = 0; i < AllSalesPersonRankInfos.Count; i++)
+        {
+            if (AllSalesPersonRankInfos[i].SalePersonID == sPersonId)
+            {
+                info = AllSalesPersonRankInfos[i];
+            }
+        }
+        if (info == null)
+        {
+            info = new SalesPersonRankInfo();
+            info.SalePersonID = sPersonId;
+            info.SalesPsersonName = SalesDataSystem.SystemDatas.SalesPersonData.GetSalesNameByPersonID(sPersonId);
+            if (string.IsNullOrEmpty(info.SalesPsersonName)) return null;
+            info.LeastSales = SalesDataSystem.SystemDatas.SalesPersonData.GetLeastSalesByPersonID(sPersonId);
+            info.TargetSales = SalesDataSystem.SystemDatas.SalesPersonData.GetTargetSalesByPersonID(sPersonId);
+            info.Ranking = 0;
+            info.PerformanceSales = 0;
+            info.CompleteRate = 0;
+            AllSalesPersonRankInfos.Add(info);
+        }
+        return info;
+    }
+
     public void Reset()
     {
         TotalSales = 0;
-        ProductTransactionInfos.Clear();
-        AllStoreDailySaleData.Clear();
+        InitDataStoreAndRanking();
         MonthSaleDataToDate = new MonthSalesData();
     }
 }

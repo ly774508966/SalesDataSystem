@@ -36,6 +36,13 @@ public class DailySalesSystemData : SystemDataBase
         return allDailydataSaleDataDict[date].AllStoreDailySaleData;
     }
 
+    public List<SalesPersonRankInfo> LoadAllSalesPersonRankingInfo(string date)
+    {
+        LoadLastDailyData(date);
+        LoadDailyData(date);
+        return allDailydataSaleDataDict[date].AllSalesPersonRankInfos;
+    }
+
     public int GetLastDayMonthEnterCustomerNumber(string date, int storeID)
     {
         DailySalesData lastDayData = LoadLastDailyData(date);
@@ -91,6 +98,7 @@ public class DailySalesSystemData : SystemDataBase
             DailySalesData lastDayData = LoadLastDailyData(date);
             thisDayData.TotalSales = 0;
             thisDayData.MonthSaleDataToDate = lastDayData.MonthSaleDataToDate.Clone();
+            #region storeDailyDate
             for (int i = 0; i < lastDayData.AllStoreDailySaleData.Count; i++)
             {
                 StoreDailyInfo lastStoreDayInfo = lastDayData.AllStoreDailySaleData[i];
@@ -110,6 +118,18 @@ public class DailySalesSystemData : SystemDataBase
                 todayStoreDayInfo.TodaySales = 0;
                 todayStoreDayInfo.TodayProductTransactions.Clear();
             }
+            #endregion
+            #region RankingInfo
+            for (int i = 0; i < lastDayData.AllSalesPersonRankInfos.Count; i++)
+            {
+                SalesPersonRankInfo lastRankingInfo = lastDayData.AllSalesPersonRankInfos[i];
+                SalesPersonRankInfo todayRankingInfo = thisDayData.GetSalePersonRankInfo(lastRankingInfo.SalePersonID);
+                if (todayRankingInfo == null) continue;
+                todayRankingInfo.Ranking = lastRankingInfo.Ranking;
+                todayRankingInfo.PerformanceSales = lastRankingInfo.PerformanceSales;
+                todayRankingInfo.CompleteRate = lastRankingInfo.CompleteRate;
+            }
+            #endregion
         }
         for (int i = 0; i < thisDayData.AllSingleSalesData.Count; i++)
         {
@@ -119,8 +139,10 @@ public class DailySalesSystemData : SystemDataBase
             trans.TransactionCount += singleSaleData.SaleCount;
             #region 计算门店每日数据
             StoreDailyInfo storeDayInfo = thisDayData.GetStoreDailyInfo(singleSaleData.StoreID);
-            storeDayInfo.TodyTransaction += 1;
-            storeDayInfo.MonthTransaction += 1;
+            if (singleSaleData.TransactionPercent > 0)
+                storeDayInfo.TodyTransaction += 1;
+            if (singleSaleData.TransactionPercent > 0)
+                storeDayInfo.MonthTransaction += 1;
             storeDayInfo.TodaySales += singleSaleData.TotalPrice;
             ProductTransactionInfo transaction = storeDayInfo.GetTransactionInfo(singleSaleData.ProductID, singleSaleData.ProductName);
             transaction.TransactionCount += singleSaleData.SaleCount;
@@ -128,12 +150,14 @@ public class DailySalesSystemData : SystemDataBase
             storeDayInfo.CompletionRate = storeDayInfo.MonthTotalSales / storeDayInfo.TargetSales;
             if (singleSaleData.IsNewCustomer)
             {
-                storeDayInfo.NewCustomerCount += 1;
+                if (singleSaleData.TransactionPercent > 0)
+                    storeDayInfo.NewCustomerCount += 1;
                 storeDayInfo.NewCustomerSales += singleSaleData.TotalPrice;
             }
             else
             {
-                storeDayInfo.OldCustomerCount += 1;
+                if (singleSaleData.TransactionPercent > 0)
+                    storeDayInfo.OldCustomerCount += 1;
                 storeDayInfo.OldCustomerSales += singleSaleData.TotalPrice;
             }
             #endregion
@@ -150,11 +174,28 @@ public class DailySalesSystemData : SystemDataBase
                 thisDayData.MonthSaleDataToDate.OldCustomerSales += singleSaleData.TotalPrice;
             }
             #endregion
+            #region 
+            int salesPersonId = SalesDataSystem.SystemDatas.SalesPersonData.GetSalesPersonIdByName(singleSaleData.SalesPerson1);
+            SalesPersonRankInfo salesPersonRankingInfo = thisDayData.GetSalePersonRankInfo(salesPersonId);
+            salesPersonRankingInfo.PerformanceSales += singleSaleData.TotalPrice;
+            #endregion
         }
         for (int i = 0; i < thisDayData.AllStoreDailySaleData.Count; i++)
         {
             StoreDailyInfo todayStoreDayInfo = thisDayData.AllStoreDailySaleData[i];
             todayStoreDayInfo.CompletionRate = todayStoreDayInfo.MonthTotalSales / todayStoreDayInfo.TargetSales;
+        }
+        thisDayData.AllSalesPersonRankInfos.Sort((a, b) =>
+        {
+            if (a.PerformanceSales > b.PerformanceSales) return -1;
+            else if (a.PerformanceSales == b.PerformanceSales) return 0;
+            else return 1;
+        });
+        for (int i = 0; i < thisDayData.AllSalesPersonRankInfos.Count; i++)
+        {
+            SalesPersonRankInfo rankinginfo = thisDayData.AllSalesPersonRankInfos[i];
+            rankinginfo.Ranking = i + 1;
+            rankinginfo.CompleteRate = rankinginfo.PerformanceSales / rankinginfo.TargetSales;
         }
     }
 

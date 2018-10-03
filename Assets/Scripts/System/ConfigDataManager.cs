@@ -195,6 +195,21 @@ public class ConfigDataManager
 
         exportInfo = strb.ToString();
         File.WriteAllText(persistPath, exportInfo);
+
+        string rankingPersistPath = string.Format("{0}/{1}/{2}/{3}/{4}ExportData_Ranking.txt", Application.persistentDataPath, "HistoryData", year, month, day);
+        System.Text.StringBuilder rankstrb = new System.Text.StringBuilder(500);
+        string rankingheadtitle = "门店,姓名,保底（万）,目标（万）,排名,业绩（元）,完成率（100%）" + Environment.NewLine;
+        rankstrb.Append(rankingheadtitle);
+        string rankinfoformat = "{0},{1},{2},{3},{4},{5},{6}%" + Environment.NewLine;
+        for (int i = 0; i < newinfo.AllSalesPersonRankInfos.Count; i++)
+        {
+            SalesPersonRankInfo rankinginfo = newinfo.AllSalesPersonRankInfos[i];
+            string singleinfo = string.Format(rankinfoformat, rankinginfo.StoreName,rankinginfo.SalesPsersonName,rankinginfo.LeastSales / 10000,
+                rankinginfo.TargetSales/10000,rankinginfo.Ranking,rankinginfo.PerformanceSales,(int)(rankinginfo.CompleteRate * 100));
+            rankstrb.Append(singleinfo);
+        }
+        exportInfo = rankstrb.ToString();
+        File.WriteAllText(rankingPersistPath, exportInfo);
     }
 
     /// <summary>

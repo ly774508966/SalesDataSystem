@@ -7,7 +7,7 @@ public class DailyDataSystem : SystemStepBase
 {
     public GameObject ProductInfoPanel;
     public GameObject StoreDailyInfoPanel;
-
+    public GameObject SalesPersonRankPanel;
     /// <summary>
     /// 产品信息父物体
     /// </summary>
@@ -34,6 +34,18 @@ public class DailyDataSystem : SystemStepBase
     /// 门店每日销售数据
     /// </summary>
     private List<StoreDailySalePrefabInfo> storeDailyDataPrefabList = new List<StoreDailySalePrefabInfo>();
+
+    public Transform SalesPersonRankingDataContent;
+    /// <summary>
+    /// 显示销售排名数据的prefab
+    /// </summary>
+    public GameObject SalePsersonRankinDataPrefab;
+    /// 列表<summary>
+    /// 销售排名
+    /// </summary>
+    private List<SingleSalePersonRankPrefabInfo> salePersonRankingDataPrefabList = new List<SingleSalePersonRankPrefabInfo>();
+
+
 
     public string CurDateTime;
     public InputField DateTimeInput;
@@ -91,6 +103,20 @@ public class DailyDataSystem : SystemStepBase
         else
         {
             StoreDailyInfoPanel.SetActive(false);
+        }
+    }
+
+    public void OnClickSalesPersonSaleRank(bool value)
+    {
+        if (value)
+        {
+            curDailyInfoType = eDailiPanelType.SalesPersonRank;
+            SalesPersonRankPanel.SetActive(true);
+            RefreshSalesRankDailyDataShow();
+        }
+        else
+        {
+            SalesPersonRankPanel.SetActive(false);
         }
     }
 
@@ -232,7 +258,7 @@ public class DailyDataSystem : SystemStepBase
             }
             else
             {
-                storeDailyDataPrefabList[i].SetValue(CurDateTime,storeDailySaleInfos[i]);
+                storeDailyDataPrefabList[i].SetValue(CurDateTime, storeDailySaleInfos[i]);
                 storeDailyDataPrefabList[i].gameObject.SetActive(true);
             }
         }
@@ -251,7 +277,7 @@ public class DailyDataSystem : SystemStepBase
         newGo.transform.SetParent(StoreDailyDataContent);
         newGo.transform.SetAsLastSibling();
         StoreDailySalePrefabInfo prefabInfo = newGo.GetComponent<StoreDailySalePrefabInfo>();
-        prefabInfo.SetValue(CurDateTime,info);
+        prefabInfo.SetValue(CurDateTime, info);
         storeDailyDataPrefabList.Add(prefabInfo);
         newGo.SetActive(true);
     }
@@ -263,4 +289,57 @@ public class DailyDataSystem : SystemStepBase
     }
     #endregion
 
+    #region 销售人员排名
+    public void RefreshSalesRankDailyDataShow()
+    {
+        List<SalesPersonRankInfo> rankingDailySaleInfos = SalesDataSystem.SystemDatas.DailySysData.LoadAllSalesPersonRankingInfo(CurDateTime);
+        rankingDailySaleInfos.Sort((a, b) =>
+        {
+            if (a.Ranking > b.Ranking)
+                return 11;
+            else if (a.Ranking == b.Ranking)
+                return 0;
+            else
+                return -1;
+        });
+        int curPrefabIndex = 0;
+        for (int i = 0; i < rankingDailySaleInfos.Count; i++)
+        {
+            curPrefabIndex++;
+            if (curPrefabIndex > salePersonRankingDataPrefabList.Count)
+            {
+                CreateSalesPersonRankDailySaleDataPrefab(rankingDailySaleInfos[i]);
+            }
+            else
+            {
+                salePersonRankingDataPrefabList[i].SetValue(rankingDailySaleInfos[i]);
+                salePersonRankingDataPrefabList[i].gameObject.SetActive(true);
+            }
+        }
+        if (curPrefabIndex < salePersonRankingDataPrefabList.Count)
+        {
+            for (int i = curPrefabIndex; i < salePersonRankingDataPrefabList.Count; i++)
+            {
+                salePersonRankingDataPrefabList[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void CreateSalesPersonRankDailySaleDataPrefab(SalesPersonRankInfo info)
+    {
+        GameObject newGo = GameObject.Instantiate(SalePsersonRankinDataPrefab);
+        newGo.transform.SetParent(SalesPersonRankingDataContent);
+        newGo.transform.SetAsLastSibling();
+        SingleSalePersonRankPrefabInfo prefabInfo = newGo.GetComponent<SingleSalePersonRankPrefabInfo>();
+        prefabInfo.SetValue(info);
+        salePersonRankingDataPrefabList.Add(prefabInfo);
+        newGo.SetActive(true);
+    }
+
+    public void OnClickSaveSalePersonRankData()
+    {
+        SalesDataSystem.SystemDatas.DailySysData.SaveChange(CurDateTime);
+        SalesDataSystem.TipsShow.ShowTipsInfo("保存数据成功");
+    }
+    #endregion
 }

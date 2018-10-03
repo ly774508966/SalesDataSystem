@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SalePersonInfo
+public class SalesPersonRankInfo
 {
     /// <summary>
-    /// 名字
+    /// 销售ID
     /// </summary>
-    public string Name;
+    public int SalePersonID;
     /// <summary>
-    /// 人员ID
+    /// 销售人员名称
     /// </summary>
-    public int SalePsersonID;
+    public string SalesPsersonName;
     /// <summary>
-    /// 门店
+    /// 门店名称
     /// </summary>
     public string StoreName;
     /// <summary>
@@ -25,4 +25,16 @@ public class SalePersonInfo
     /// 目标销售额
     /// </summary>
     public float TargetSales;
+    /// <summary>
+    /// 排名
+    /// </summary>
+    public int Ranking;
+    /// <summary>
+    /// 业绩
+    /// </summary>
+    public float PerformanceSales;
+    /// <summary>
+    /// 完成率
+    /// </summary>
+    public float CompleteRate;
 }
