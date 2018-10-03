@@ -48,7 +48,7 @@ public class StoreDailySalePrefabInfo : MonoBehaviour
             Text_TodayProductTransactions.text += string.Format("{0}*{1}  ", trans.ProductName, trans.TransactionCount);
         }
         Input_CompleteRate.text = value.CompletionRate.ToString();
-        Input_OldCustomerCount.text = value.OldCustomerCount                .ToString();
+        Input_OldCustomerCount.text = value.OldCustomerCount.ToString();
         Input_OldCustomerSales.text = value.OldCustomerSales.ToString();
         Input_NewCustomerCount.text = value.NewCustomerCount.ToString();
         Input_NewCustomerSales.text = value.NewCustomerSales.ToString();
