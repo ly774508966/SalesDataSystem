@@ -167,7 +167,7 @@ public class ConfigDataManager
         string year = date.Substring(0, 4);
         string month = date.Substring(4, 2);
         string day = date.Substring(6, 2);
-        string persistPath = string.Format("{0}/{1}/{2}/{3}/{4}ExportData.txt", Application.persistentDataPath, "HistoryData", year, month, day);
+        string persistPath = string.Format("{0}/{1}/{2}/{3}/{4}ExportData.txt", Application.persistentDataPath, "ExportData", year, month, day);
         string folder = Path.GetDirectoryName(persistPath);
         CreateDir(persistPath);
         string DailySalesDataMonthPart = (Resources.Load("Configs/DailySalesDataMonthPart") as TextAsset).text;
@@ -197,7 +197,7 @@ public class ConfigDataManager
         exportInfo = strb.ToString();
         File.WriteAllText(persistPath, exportInfo);
 
-        string rankingPersistPath = string.Format("{0}/{1}/{2}/{3}/{4}ExportData_Ranking.txt", Application.persistentDataPath, "HistoryData", year, month, day);
+        string rankingPersistPath = string.Format("{0}/{1}/{2}/{3}/{4}ExportData_Ranking.txt", Application.persistentDataPath, "ExportData", year, month, day);
         System.Text.StringBuilder rankstrb = new System.Text.StringBuilder(500);
         string rankingheadtitle = "门店,姓名,保底（万）,目标（万）,排名,业绩（元）,完成率（100%）" + Environment.NewLine;
         rankstrb.Append(rankingheadtitle);
