@@ -168,6 +168,7 @@ public class ConfigDataManager
         string month = date.Substring(4, 2);
         string day = date.Substring(6, 2);
         string persistPath = string.Format("{0}/{1}/{2}/{3}/{4}ExportData.txt", Application.persistentDataPath, "HistoryData", year, month, day);
+        string folder = Path.GetDirectoryName(persistPath);
         CreateDir(persistPath);
         string DailySalesDataMonthPart = (Resources.Load("Configs/DailySalesDataMonthPart") as TextAsset).text;
         string DailySalesDataStorePart = (Resources.Load("Configs/DailySalesDataStorePart") as TextAsset).text;
@@ -210,6 +211,14 @@ public class ConfigDataManager
         }
         exportInfo = rankstrb.ToString();
         File.WriteAllText(rankingPersistPath, exportInfo);
+        OpenFolder(folder);
+    }
+
+    public static void OpenFolder(string path)
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        System.Diagnostics.Process.Start(path);
+#endif
     }
 
     /// <summary>
@@ -260,7 +269,7 @@ public class ConfigDataManager
                 {
                     productTransactionDict[key] = "";
                 }
-                productTransactionDict[key] += addValue;
+                productTransactionDict[key] += (addValue + Environment.NewLine);
             }
         }
 

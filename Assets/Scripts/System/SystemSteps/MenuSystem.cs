@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class MenuSystem : SystemStepBase
 {
@@ -34,5 +35,11 @@ public class MenuSystem : SystemStepBase
     public void OnClickSalesPersonInfo()
     {
         SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.SalePersonInfo);
+    }
+
+    public void OnClickOpenFolder()
+    {
+        string path = Application.persistentDataPath + "/HistoryData";
+        ConfigDataManager.OpenFolder(path);
     }
 }

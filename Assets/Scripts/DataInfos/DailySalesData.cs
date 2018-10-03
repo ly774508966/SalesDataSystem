@@ -148,10 +148,21 @@ public class DailySalesData
         return info;
     }
 
+    public List<ProductTransactionInfo> CloneProductTransaction()
+    {
+        List<ProductTransactionInfo> newinfo = new List<ProductTransactionInfo>();
+        for (int i = 0; i < ProductTransactionInfos.Count; i++)
+        {
+            newinfo.Add(ProductTransactionInfos[i].Clone());
+        }
+        return newinfo;
+    }
+
     public void Reset()
     {
         TotalSales = 0;
         InitDataStoreAndRanking();
+        ProductTransactionInfos.Clear();
         MonthSaleDataToDate = new MonthSalesData();
     }
 }
