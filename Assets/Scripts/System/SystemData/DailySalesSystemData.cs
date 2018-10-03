@@ -118,7 +118,6 @@ public class DailySalesSystemData : SystemDataBase
                 StoreDailyInfo todayStoreDayInfo = thisDayData.AllStoreDailySaleData[i];
                 todayStoreDayInfo.TodaySales = 0;
                 todayStoreDayInfo.TodyTransaction = 0;
-                todayStoreDayInfo.TodayEnterCustomerNumber = 0;
                 todayStoreDayInfo.TodayProductTransactions.Clear();
             }
             #endregion
