@@ -4,3 +4,12 @@ Temp
 SalesDataSystem.csproj
 SalesDataSystem.sln
 UnityPackageManager/manifest.json
+SalesDataSystem.Editor.csproj
+*.csproj
+*.csproj
+obj/Debug/Assembly-CSharp-Editor.csproj.CoreCompileInputs.cache
+Assembly-CSharp.csproj
+obj/Debug/Assembly-CSharp-Editor.csprojAssemblyReference.cache
+obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
+obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
+Assembly-CSharp.csproj
