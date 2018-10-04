@@ -98,7 +98,7 @@ public class DailySalesSystemData : SystemDataBase
             DailySalesData lastDayData = LoadLastDailyData(date);
             thisDayData.TotalSales = 0;
             thisDayData.MonthSaleDataToDate = lastDayData.MonthSaleDataToDate.Clone();
-            thisDayData.ProductTransactionInfos = lastDayData.CloneProductTransaction();
+            thisDayData.ProductTransactionInfos.Clear();
             #region storeDailyDate
             for (int i = 0; i < lastDayData.AllStoreDailySaleData.Count; i++)
             {
