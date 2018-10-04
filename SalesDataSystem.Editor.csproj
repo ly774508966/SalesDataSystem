@@ -296,6 +296,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\Configs\DailySalesDataCustomerServicePart.txt" />
+    <None Include="Assets\Resources\Configs\DailySalesDataCustomersServiceStorePart.txt" />
+    <None Include="Assets\Resources\Configs\DailySalesDataDejiStorePart.txt" />
     <None Include="Assets\Resources\Configs\DailySalesDataMonthPart.txt" />
     <None Include="Assets\Resources\Configs\DailySalesDataStorePart.txt" />
   </ItemGroup>

@@ -173,6 +173,8 @@ public class ConfigDataManager
         string DailySalesDataMonthPart = (Resources.Load("Configs/DailySalesDataMonthPart") as TextAsset).text;
         string DailySalesDataStorePart = (Resources.Load("Configs/DailySalesDataStorePart") as TextAsset).text;
         string DailySalesDataCustomerServicePart = (Resources.Load("Configs/DailySalesDataCustomerServicePart") as TextAsset).text;
+        string DailySalesDataDejiStorePart = (Resources.Load("Configs/DailySalesDataDejiStorePart") as TextAsset).text;
+        string DailySalesDataCustomerServiceStorePart = (Resources.Load("Configs/DailySalesDataCustomersServiceStorePart") as TextAsset).text;
         string productTransactionInfo = GetMonthProductTransactionInfo(newinfo);
         MonthSalesData thisMonthData = newinfo.MonthSaleDataToDate;
 
@@ -183,16 +185,52 @@ public class ConfigDataManager
            thisMonthData.OldCustomerSales);
         strb.Append(exportmonthInfo);
 
+        int index = 1;
+        #region 一般的店面处理
         for (int i = 0; i < newinfo.AllStoreDailySaleData.Count; i++)
         {
             StoreDailyInfo sdi = newinfo.AllStoreDailySaleData[i];
+            if (sdi.StoreName == "德基广场店" || sdi.StoreName == "德基BHG店"
+                || sdi.StoreName == "广播进线" || sdi.StoreName == "售后维护") continue;
             string storeproductInfo = GetStoreProductTransactionInfo(sdi);
-            string exportStoreDailyInfo = string.Format(DailySalesDataStorePart, sdi.StoreID, sdi.StoreName, month, sdi.LeastSales / 10000f, sdi.TargetSales / 10000f,
-                year,month,day, sdi.TodayEnterCustomerNumber, sdi.MonthEnterCustomerNubmer, sdi.TodyTransaction,sdi.MonthTransaction, sdi.TodaySales, storeproductInfo,
+            string exportStoreDailyInfo = string.Format(DailySalesDataStorePart, index, sdi.StoreName, month, sdi.LeastSales / 10000f, sdi.TargetSales / 10000f,
+                year, month, day, sdi.TodayEnterCustomerNumber, sdi.MonthEnterCustomerNubmer, sdi.TodyTransaction, sdi.MonthTransaction, sdi.TodaySales, storeproductInfo,
                 sdi.MonthTotalSales, (sdi.CompletionRate * 100).ToString("F2"), sdi.OldCustomerSales, sdi.OldCustomerCount,
                 sdi.NewCustomerSales, sdi.NewCustomerCount);
             strb.Append(exportStoreDailyInfo);
+            index++;
         }
+        #endregion
+
+        #region 德基广场店处理
+        int dejistoreId = SalesDataSystem.SystemDatas.StoreSysData.GetStoreIDByName("德基广场店");
+        StoreDailyInfo dejiStoreInfo = newinfo.GetStoreDailyInfo(dejistoreId);
+        string dejiStoreProductInfo = GetStoreProductTransactionInfo(dejiStoreInfo);
+        int dejiBHGstoreId = SalesDataSystem.SystemDatas.StoreSysData.GetStoreIDByName("德基BHG店");
+        StoreDailyInfo dejiBhgStoreInfo = newinfo.GetStoreDailyInfo(dejiBHGstoreId);
+        string dejiBhgProductInfo = GetStoreProductTransactionInfo(dejiBhgStoreInfo);
+        string dejiStoreDailyInfo = string.Format(DailySalesDataDejiStorePart, index, month, dejiStoreInfo.LeastSales / 10000f, dejiStoreInfo.TargetSales / 10000f,
+                year, month, day, (dejiStoreInfo.TodayEnterCustomerNumber + dejiBhgStoreInfo.TodayEnterCustomerNumber), (dejiBhgStoreInfo.MonthEnterCustomerNubmer + dejiBhgStoreInfo.MonthEnterCustomerNubmer), (dejiStoreInfo.TodyTransaction + dejiBhgStoreInfo.TodyTransaction), (dejiStoreInfo.MonthTransaction + dejiBhgStoreInfo.MonthTransaction)
+                , (dejiStoreInfo.TodaySales + dejiBhgStoreInfo.TodaySales), dejiStoreProductInfo, dejiBhgProductInfo,(dejiStoreInfo.MonthTotalSales + dejiBhgStoreInfo.MonthTotalSales), ((dejiStoreInfo.CompletionRate + dejiBhgStoreInfo.CompletionRate) * 100).ToString("F2"), (dejiStoreInfo.OldCustomerSales), (dejiStoreInfo.OldCustomerCount),
+                (dejiStoreInfo.NewCustomerSales), (dejiStoreInfo.NewCustomerCount), dejiBhgStoreInfo.MonthTotalSales, (dejiBhgStoreInfo.NewCustomerCount + dejiBhgStoreInfo.OldCustomerCount));
+        strb.Append(dejiStoreDailyInfo);
+        index++;
+        #endregion
+        strb.Append(Environment.NewLine);
+        #region 客服部处理
+        int broadcastStoreId = SalesDataSystem.SystemDatas.StoreSysData.GetStoreIDByName("广播进线");
+        StoreDailyInfo broadCastStoreInfo = newinfo.GetStoreDailyInfo(broadcastStoreId);
+        string broadCastProductInfo = GetStoreProductTransactionInfo(broadCastStoreInfo);
+        int afterSaleStoreId = SalesDataSystem.SystemDatas.StoreSysData.GetStoreIDByName("售后维护");
+        StoreDailyInfo afterSaleStoreInfo = newinfo.GetStoreDailyInfo(afterSaleStoreId);
+        string afterSaleProductInfo = GetStoreProductTransactionInfo(afterSaleStoreInfo);
+        string customerServiceDailyInfo = string.Format(DailySalesDataCustomerServiceStorePart, index, month, broadCastStoreInfo.LeastSales / 10000f, broadCastStoreInfo.TargetSales / 10000f,
+            year, month, day, broadCastStoreInfo.TodyTransaction, broadCastStoreInfo.TodaySales, broadCastProductInfo, broadCastStoreInfo.MonthTotalSales,
+            afterSaleStoreInfo.TodyTransaction, afterSaleStoreInfo.TodaySales, afterSaleProductInfo, afterSaleStoreInfo.MonthTotalSales,
+            (broadCastStoreInfo.MonthTotalSales + afterSaleStoreInfo.MonthTotalSales), (broadCastStoreInfo.NewCustomerSales + afterSaleStoreInfo.NewCustomerSales), (broadCastStoreInfo.NewCustomerCount + afterSaleStoreInfo.NewCustomerCount),
+            (broadCastStoreInfo.OldCustomerSales + afterSaleStoreInfo.OldCustomerSales), (broadCastStoreInfo.OldCustomerCount + afterSaleStoreInfo.OldCustomerCount), (((broadCastStoreInfo.CompletionRate + afterSaleStoreInfo.CompletionRate) * 100).ToString("F2")));
+        strb.Append(customerServiceDailyInfo);
+        #endregion
 
         exportInfo = strb.ToString();
         File.WriteAllText(persistPath, exportInfo);
@@ -269,7 +307,7 @@ public class ConfigDataManager
                 {
                     productTransactionDict[key] = "";
                 }
-                productTransactionDict[key] += (addValue + Environment.NewLine);
+                productTransactionDict[key] += (addValue);
             }
         }
 
@@ -278,6 +316,7 @@ public class ConfigDataManager
         {
             strb.Append(p.Key);
             strb.Append(p.Value);
+            strb.Append(Environment.NewLine);
         }
         productTransactionInfo = strb.ToString();
         return productTransactionInfo;
@@ -287,6 +326,7 @@ public class ConfigDataManager
     {
         string productTransactionInfo = string.Empty;
         System.Text.StringBuilder strb = new System.Text.StringBuilder(100);
+        strb.Append(": ");
         foreach (var p in storeinfo.TodayProductTransactions)
         {
             string info = string.Format("{0} * {1}份、", p.ProductName, p.TransactionCount);
