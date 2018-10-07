@@ -8,7 +8,7 @@ using System;
 public class DataReceiver
 {
     public bool IsListening = false;
-    public TcpListener listener;
+    public Socket SocketServer;
 
 
     public Socket socket;
@@ -50,11 +50,12 @@ public class DataReceiver
 
         IPAddress localIp = Utility.GetLocalIpv4();
         IPEndPoint endPoint = new IPEndPoint(localIp, port);
-        listener = new TcpListener(endPoint);
-        listener.Start();
-
         AsyncCallback callback = new AsyncCallback(AcceptCallBack);
-        listener.BeginAcceptSocket(callback, listener);
+
+        SocketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        SocketServer.Bind(endPoint);
+        SocketServer.Listen(20);
+        SocketServer.BeginAccept(callback, SocketServer);
         IsListening = true;
     }
 
@@ -67,7 +68,7 @@ public class DataReceiver
     {
         try
         {
-            Socket handle = listener.EndAcceptSocket(ar);
+            Socket handle = SocketServer.EndAccept(ar);
             if (handle == null) return;
             GameEvents.TriggerCheckEvent(eGameEventTypes.DataReceiverConnected);
             RecBuffer = null;
@@ -153,9 +154,9 @@ public class DataReceiver
 
     public void Dispose()
     {
-        if (listener != null)
-            listener.Stop();
-        listener = null;
+        if (SocketServer != null)
+            SocketServer.Close();
+        SocketServer = null;
         IsListening = false;
     }
 }
