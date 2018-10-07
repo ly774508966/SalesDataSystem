@@ -69,7 +69,7 @@ public class DataSender
             int length = byteData.Length;
             byte[] head = BitConverter.GetBytes(length);
             byte[] data = new byte[head.Length + byteData.Length];
-            Debug.LogError("SendBytes" + data.Length);
+            //Debug.LogError("SendBytes" + data.Length);
             Buffer.BlockCopy(head, 0, data, 0, head.Length);
             Buffer.BlockCopy(byteData, 0, data, head.Length, byteData.Length);
             canSend = false;
