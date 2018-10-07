@@ -80,3 +80,11 @@ MonoBehaviour:
     ProductID: 17
     UnitPrice: 5200
     ProductType: 4
+  - ProductName: "\u5C0A\u4EAB6\u63D0\u8D27\u5238"
+    ProductID: 18
+    UnitPrice: 2748
+    ProductType: 0
+  - ProductName: "\u7ECF\u517810\u63D0\u8D27\u5238"
+    ProductID: 19
+    UnitPrice: 3980
+    ProductType: 1
