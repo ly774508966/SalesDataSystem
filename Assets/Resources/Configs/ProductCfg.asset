@@ -76,3 +76,7 @@ MonoBehaviour:
     ProductID: 16
     UnitPrice: 398
     ProductType: 1
+  - ProductName: "\u5706\u6876\u5E72\u71D5\u76CF100\u514B"
+    ProductID: 17
+    UnitPrice: 5200
+    ProductType: 4

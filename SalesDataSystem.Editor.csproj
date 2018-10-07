@@ -283,6 +283,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SalesDataSystem.Plugins.csproj">
+      <Project>{CB28380E-DBE9-DDFC-8312-3E1BA97DEFDD}</Project>
+      <Name>SalesDataSystem.Plugins</Name>
+    </ProjectReference>
     <ProjectReference Include="SalesDataSystem.csproj">
       <Project>{61FE6327-F01B-779E-EAD3-C89492EFB852}</Project>
       <Name>SalesDataSystem</Name>

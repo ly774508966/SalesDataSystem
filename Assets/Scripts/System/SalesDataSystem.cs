@@ -31,10 +31,14 @@ public class SalesDataSystem : MonoBehaviour
     public GameObject ProductInfo;
     public GameObject StoreInfo;
     public GameObject SalePersonInfo;
+    public GameObject OpenFolder;
+    public GameObject DataSend;
+    public GameObject DataReceive;
 
     public eSystemStep InitStep;
 
     public static SystemDataManager SystemDatas;
+    public static SyncDataManager SyncDataMgr;
 
     private Dictionary<eSystemStep, SystemStepBase> systemStepDict = new Dictionary<eSystemStep, SystemStepBase>();
     private eSystemStep currentStep;
@@ -52,11 +56,18 @@ public class SalesDataSystem : MonoBehaviour
         ConfigDataManager.LoadData();
         SystemDatas = new SystemDataManager();
         SystemDatas.Init();
+        SyncDataMgr = new SyncDataManager();
+#if UNITY_EDITOR || UNITY_STANDALONE
+        OpenFolder.SetActive(true);
+#else
+        OpenFolder.SetActive(false);
+#endif
     }
 
     private void Update()
     {
-
+        if (SyncDataMgr != null)
+            SyncDataMgr.Update();
     }
 
     private void OnDestroy()
@@ -73,6 +84,8 @@ public class SalesDataSystem : MonoBehaviour
         systemStepDict[eSystemStep.ProductInfo] = ProductInfo.GetComponent<ProductInfoSystem>();
         systemStepDict[eSystemStep.StoreInfo] = StoreInfo.GetComponent<StoreInfoSystem>();
         systemStepDict[eSystemStep.SalePersonInfo] = SalePersonInfo.GetComponent<SalesPersonInfoSystem>();
+        systemStepDict[eSystemStep.DataSend] = DataSend.GetComponent<DataSendSystem>();
+        systemStepDict[eSystemStep.DataReceive] = DataReceive.GetComponent<DataReceiveSystem>();
     }
 
     public void ChangeSystemStep(eSystemStep nextStep)

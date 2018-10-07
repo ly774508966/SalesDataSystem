@@ -42,4 +42,14 @@ public class MenuSystem : SystemStepBase
         string path = Application.persistentDataPath + "/HistoryData";
         ConfigDataManager.OpenFolder(path);
     }
+
+    public void OnClickReceiveData()
+    {
+        SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.DataReceive);
+    }
+
+    public void OnClickSendData()
+    {
+        SalesDataSystem.Instance.ChangeSystemStep(eSystemStep.DataSend);
+    }
 }

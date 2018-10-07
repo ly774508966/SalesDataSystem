@@ -11,6 +11,8 @@ public enum eSystemStep
     ProductInfo,
     StoreInfo,
     SalePersonInfo,
+    DataSend,
+    DataReceive,
 }
 
 public enum eDailiPanelType
@@ -35,4 +37,21 @@ public enum eStoreType
     Store,
     BroadCast,
     AfterSales,
+}
+
+public enum eReceiverState
+{
+    Closed,
+    Wait,
+    Connected,
+    Receiving,
+    SyncOver,
+}
+
+public enum eSenderState
+{
+    Closed,
+    Connected,
+    Sending,
+    SendOver,
 }

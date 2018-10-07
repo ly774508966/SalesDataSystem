@@ -62,7 +62,7 @@ public class ConfigDataManager
         newCfg.Products = newInfo;
         string info = JsonUtility.ToJson(newCfg);
         string persistPath = Application.persistentDataPath + "/Config/ProductCfg.txt";
-        CreateDir(persistPath);
+        Utility.CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadProductInfo();
     }
@@ -95,7 +95,7 @@ public class ConfigDataManager
         newCfg.Stores = newinfo;
         string info = JsonUtility.ToJson(newCfg);
         string persistPath = Application.persistentDataPath + "/Config/StoreCfg.txt";
-        CreateDir(persistPath);
+        Utility.CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadStoreInfo();
     }
@@ -128,7 +128,7 @@ public class ConfigDataManager
         newCfg.SalePerson = newinfo;
         string info = JsonUtility.ToJson(newCfg);
         string persistPath = Application.persistentDataPath + "/Config/SalePersonCfg.txt";
-        CreateDir(persistPath);
+        Utility.CreateDir(persistPath);
         File.WriteAllText(persistPath, info);
         LoadStoreInfo();
     }
@@ -157,7 +157,7 @@ public class ConfigDataManager
         string month = date.Substring(4, 2);
         string day = date.Substring(6, 2);
         string persistPath = string.Format("{0}/{1}/{2}/{3}/{4}.txt", Application.persistentDataPath, "HistoryData", year, month, day);
-        CreateDir(persistPath);
+        Utility.CreateDir(persistPath);
         string info = JsonUtility.ToJson(newinfo);
         File.WriteAllText(persistPath, info);
     }
@@ -169,7 +169,7 @@ public class ConfigDataManager
         string day = date.Substring(6, 2);
         string persistPath = string.Format("{0}/{1}/{2}/{3}/{4}ExportData.txt", Application.persistentDataPath, "ExportData", year, month, day);
         string folder = Path.GetDirectoryName(persistPath);
-        CreateDir(persistPath);
+        Utility.CreateDir(persistPath);
         string DailySalesDataMonthPart = (Resources.Load("Configs/DailySalesDataMonthPart") as TextAsset).text;
         string DailySalesDataStorePart = (Resources.Load("Configs/DailySalesDataStorePart") as TextAsset).text;
         string DailySalesDataCustomerServicePart = (Resources.Load("Configs/DailySalesDataCustomerServicePart") as TextAsset).text;
@@ -334,16 +334,5 @@ public class ConfigDataManager
         }
         productTransactionInfo = strb.ToString();
         return productTransactionInfo;
-    }
-
-    private static void  CreateDir(string path)
-    {
-        string parent = Path.GetDirectoryName(path);
-        if (!Directory.Exists(parent))
-        {
-            Directory.CreateDirectory(parent);
-            CreateDir(parent);
-        }
-
     }
 }
