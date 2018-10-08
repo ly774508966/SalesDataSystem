@@ -168,6 +168,7 @@ public class DailyDataSystem : SystemStepBase
     {
         GameObject newGo = GameObject.Instantiate(SingleSaleDataPrefab);
         newGo.transform.SetParent(DailySingleSaleDataContent);
+        newGo.transform.localScale = Vector3.one;
         newGo.transform.SetAsLastSibling();
         SingleSaleDataPrefabInfo prefabInfo = newGo.GetComponent<SingleSaleDataPrefabInfo>();
         prefabInfo.SetValue(info);
@@ -275,6 +276,7 @@ public class DailyDataSystem : SystemStepBase
     {
         GameObject newGo = GameObject.Instantiate(StoreDailyDataPrefab);
         newGo.transform.SetParent(StoreDailyDataContent);
+        newGo.transform.localScale = Vector3.one;
         newGo.transform.SetAsLastSibling();
         StoreDailySalePrefabInfo prefabInfo = newGo.GetComponent<StoreDailySalePrefabInfo>();
         prefabInfo.SetValue(CurDateTime, info);
@@ -329,6 +331,7 @@ public class DailyDataSystem : SystemStepBase
     {
         GameObject newGo = GameObject.Instantiate(SalePsersonRankinDataPrefab);
         newGo.transform.SetParent(SalesPersonRankingDataContent);
+        newGo.transform.localScale = Vector3.one;
         newGo.transform.SetAsLastSibling();
         SingleSalePersonRankPrefabInfo prefabInfo = newGo.GetComponent<SingleSalePersonRankPrefabInfo>();
         prefabInfo.SetValue(info);

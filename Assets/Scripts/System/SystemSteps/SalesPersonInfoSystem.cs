@@ -56,6 +56,7 @@ public class SalesPersonInfoSystem : SystemStepBase
         GameObject newGo = GameObject.Instantiate(SalePersonInfoPrefab);
         newGo.transform.SetParent(SalesPersonInfoContent);
         newGo.transform.SetAsLastSibling();
+        newGo.transform.localScale = Vector3.one;
         SalePersonPrefabInfo prefabInfo = newGo.GetComponent<SalePersonPrefabInfo>();
         prefabInfo.SetValue(info);
         salepersonInfoPrefabList.Add(prefabInfo);

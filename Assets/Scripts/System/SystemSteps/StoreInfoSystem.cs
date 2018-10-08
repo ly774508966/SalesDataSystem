@@ -56,6 +56,7 @@ public class StoreInfoSystem : SystemStepBase
         GameObject newGo = GameObject.Instantiate(StoreInfoPrefab);
         newGo.transform.SetParent(StoreInfoContent);
         newGo.transform.SetAsLastSibling();
+        newGo.transform.localScale = Vector3.one;
         StoreInfoPrefabInfo prefabInfo = newGo.GetComponent<StoreInfoPrefabInfo>();
         prefabInfo.SetValue(info);
         storeInfoPrefabList.Add(prefabInfo);
