@@ -71,7 +71,7 @@ MonoBehaviour:
   - ProductName: "\u5C0A\u4EAB\u5355\u7897"
     ProductID: 15
     UnitPrice: 458
-    ProductType: 2
+    ProductType: 0
   - ProductName: "\u7ECF\u5178\u5355\u7897"
     ProductID: 16
     UnitPrice: 398
@@ -88,3 +88,7 @@ MonoBehaviour:
     ProductID: 19
     UnitPrice: 3980
     ProductType: 1
+  - ProductName: "\u5C0A\u4EAB30\uFF08\u65E0\u7CD6\uFF09"
+    ProductID: 20
+    UnitPrice: 13740
+    ProductType: 0
