@@ -131,6 +131,14 @@ public class DailySalesSystemData : SystemDataBase
                 todayRankingInfo.PerformanceSales = lastRankingInfo.PerformanceSales;
                 todayRankingInfo.CompleteRate = lastRankingInfo.CompleteRate;
             }
+            for (int i = 0; i < thisDayData.AllSalesPersonRankInfos.Count; i++)
+            {
+                SalesPersonRankInfo todayRankinfo = thisDayData.AllSalesPersonRankInfos[i];
+                SalesPersonRankInfo lastRankingInfo = lastDayData.GetSalePersonRankInfo(todayRankinfo.SalePersonID);
+                todayRankinfo.Ranking = lastRankingInfo.Ranking;
+                todayRankinfo.PerformanceSales = lastRankingInfo.PerformanceSales;
+                todayRankinfo.CompleteRate = lastRankingInfo.CompleteRate;
+            }
             #endregion
         }
         for (int i = 0; i < thisDayData.AllSingleSalesData.Count; i++)
