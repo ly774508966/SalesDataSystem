@@ -142,3 +142,8 @@ MonoBehaviour:
     StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
     LeastSales: 100000
     TargetSales: 100000
+  - Name: "\u5F20\u73B2\u8273"
+    SalePsersonID: 27
+    StoreName: "\u91D1\u5965\u5E97"
+    LeastSales: 100000
+    TargetSales: 100000
