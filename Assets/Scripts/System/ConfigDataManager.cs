@@ -272,31 +272,37 @@ public class ConfigDataManager
         {
             ProductTransactionInfo trans = newinfo.ProductTransactionInfos[i];
             eProductType productType = SalesDataSystem.SystemDatas.ProductSysData.GetProductTypeByID(trans.ProductId);
+            string exportName =  SalesDataSystem.SystemDatas.ProductSysData.GetProductExportNameByID(trans.ProductId);
+            string exportSuffix = SalesDataSystem.SystemDatas.ProductSysData.GetProductExportSuffixByID(trans.ProductId);
             string key = null;
             string addValue = null;
             switch (productType)
             {
                 case eProductType.Classic:
                     key = "经典款：";
-                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    addValue = string.Format("{0} * {1}{2}、", exportName, trans.TransactionCount,exportSuffix);
                     break;
                 case eProductType.Glory:
                     key = "荣耀款：";
-                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    addValue = string.Format("{0} * {1}{2}、", exportName, trans.TransactionCount,exportSuffix);
                     break;
                 case eProductType.Exclusive:
                     key = "尊享款：";
-                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    addValue = string.Format("{0} * {1}{2}、", exportName, trans.TransactionCount,exportSuffix);
                     break;
                 case eProductType.DrySwallow:
                     key = "干燕盏：";
-                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    addValue = string.Format("{0} * {1}{2}、", exportName, trans.TransactionCount,exportSuffix);
                     break;
                 case eProductType.Single:
                     key = trans.ProductName + "：";
-                    addValue = string.Format("{0} * {1}份、", trans.ProductName, trans.TransactionCount);
+                    addValue = string.Format("{0} * {1}{2}、", exportName, trans.TransactionCount,exportSuffix);
                     break;
                 case eProductType.None:
+                    break;
+                case eProductType.GuanYan:
+                    key = "冰糖官燕：";
+                    addValue = string.Format("{0} * {1}{2}、", exportName, trans.TransactionCount,exportSuffix);
                     break;
                 default:
                     break;
@@ -329,7 +335,9 @@ public class ConfigDataManager
         strb.Append(": ");
         foreach (var p in storeinfo.TodayProductTransactions)
         {
-            string info = string.Format("{0} * {1}份、", p.ProductName, p.TransactionCount);
+            string exportName =  SalesDataSystem.SystemDatas.ProductSysData.GetProductExportNameByID(p.ProductId);
+            string exportSuffix = SalesDataSystem.SystemDatas.ProductSysData.GetProductExportSuffixByID(p.ProductId);
+            string info = string.Format("{0} * {1}{2}、", exportName, p.TransactionCount,exportSuffix);
             strb.Append(info);
         }
         productTransactionInfo = strb.ToString();

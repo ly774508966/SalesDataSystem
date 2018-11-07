@@ -26,27 +26,27 @@ MonoBehaviour:
     SalePsersonID: 3
     StoreName: "\u5FB7\u57FA\u5E7F\u573A\u5E97"
     LeastSales: 30000
-    TargetSales: 40000
+    TargetSales: 35000
   - Name: "\u5218\u7EA2"
     SalePsersonID: 4
     StoreName: "\u6CB3\u897F\u91D1\u9E70\u5E97"
-    LeastSales: 40000
+    LeastSales: 45000
     TargetSales: 50000
   - Name: "\u7A0B\u654F"
     SalePsersonID: 5
     StoreName: "\u6CB3\u897F\u91D1\u9E70\u5E97"
-    LeastSales: 40000
-    TargetSales: 45000
+    LeastSales: 30000
+    TargetSales: 40000
   - Name: "\u53F2\u661F\u51E4"
     SalePsersonID: 6
     StoreName: "\u65B0\u8857\u53E3\u91D1\u9E70\u5E97"
-    LeastSales: 40000
-    TargetSales: 50000
+    LeastSales: 35000
+    TargetSales: 35000
   - Name: "\u6731\u5E86\u6885"
     SalePsersonID: 7
     StoreName: "\u91D1\u5965\u5E97"
-    LeastSales: 30000
-    TargetSales: 35000
+    LeastSales: 35000
+    TargetSales: 40000
   - Name: "\u6797\u5251\u5EB8"
     SalePsersonID: 8
     StoreName: "\u5FB7\u57FA\u5E7F\u573A\u5E97"
@@ -55,8 +55,8 @@ MonoBehaviour:
   - Name: "\u8881\u51AC\u6885"
     SalePsersonID: 9
     StoreName: "\u6CB3\u897F\u91D1\u9E70\u5E97"
-    LeastSales: 40000
-    TargetSales: 45000
+    LeastSales: 45000
+    TargetSales: 50000
   - Name: "\u65F6\u5A07\u5A07"
     SalePsersonID: 10
     StoreName: "\u5FB7\u57FA\u5E7F\u573A\u5E97"
@@ -65,85 +65,80 @@ MonoBehaviour:
   - Name: "\u5F20\u6625\u971E"
     SalePsersonID: 11
     StoreName: "\u5C71\u59C6\u5E97"
-    LeastSales: 40000
-    TargetSales: 45000
+    LeastSales: 30000
+    TargetSales: 35000
   - Name: "\u5F6D\u91D1\u5A23"
     SalePsersonID: 12
     StoreName: "\u65B0\u8857\u53E3\u91D1\u9E70\u5E97"
     LeastSales: 20000
-    TargetSales: 20000
+    TargetSales: 30000
   - Name: "\u4F59\u6167\u5A55"
     SalePsersonID: 13
     StoreName: "\u4E2D\u592E\u5E97"
-    LeastSales: 40000
-    TargetSales: 45000
+    LeastSales: 35000
+    TargetSales: 35000
   - Name: "\u5F90\u73B2"
     SalePsersonID: 14
     StoreName: "\u91D1\u5965\u5E97"
-    LeastSales: 30000
-    TargetSales: 35000
+    LeastSales: 100000
+    TargetSales: 100000
   - Name: "\u66FE\u5C1A\u66F2"
     SalePsersonID: 15
     StoreName: "\u65B0\u8857\u53E3\u91D1\u9E70\u5E97"
-    LeastSales: 20000
-    TargetSales: 20000
-  - Name: "\u7A0B\u6708\u4E91"
+    LeastSales: 35000
+    TargetSales: 35000
+  - Name: "\u9648\u6708\u4E91"
     SalePsersonID: 16
     StoreName: "\u5C71\u59C6\u5E97"
-    LeastSales: 40000
-    TargetSales: 45000
+    LeastSales: 30000
+    TargetSales: 35000
   - Name: "\u4E25\u7389\u51E4"
     SalePsersonID: 17
     StoreName: "\u4E2D\u592E\u5E97"
-    LeastSales: 40000
-    TargetSales: 45000
+    LeastSales: 35000
+    TargetSales: 35000
   - Name: "\u5F20\u6765\u73CD"
     SalePsersonID: 18
     StoreName: "BHG\u8D85\u5E02\u5E97"
     LeastSales: 20000
     TargetSales: 20000
-  - Name: "\u8096\u6587\u6E05"
-    SalePsersonID: 19
-    StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
-    LeastSales: 30000
-    TargetSales: 30000
   - Name: "\u9AD8\u96EA"
-    SalePsersonID: 20
+    SalePsersonID: 19
     StoreName: "BHG\u8D85\u5E02\u5E97"
     LeastSales: 20000
     TargetSales: 20000
   - Name: "\u80E1\u68A6\u5A1F"
-    SalePsersonID: 21
+    SalePsersonID: 20
     StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
     LeastSales: 30000
     TargetSales: 35000
   - Name: "\u6C64\u82CF\u6797"
-    SalePsersonID: 22
+    SalePsersonID: 21
     StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
     LeastSales: 30000
     TargetSales: 35000
   - Name: "\u738B\u5C0F\u5170"
-    SalePsersonID: 23
+    SalePsersonID: 22
     StoreName: "\u5FB7\u57FA\u5E7F\u573A\u5E97"
     LeastSales: 20000
-    TargetSales: 20000
+    TargetSales: 25000
   - Name: "\u5708\u5C42"
-    SalePsersonID: 24
+    SalePsersonID: 23
     StoreName: "\u5708\u5C42"
     LeastSales: 1000000
     TargetSales: 1000000
   - Name: "\u90ED\u79CB\u840D"
+    SalePsersonID: 24
+    StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
+    LeastSales: 20000
+    TargetSales: 25000
+  - Name: "\u795D\u5A77"
     SalePsersonID: 25
     StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
-    LeastSales: 100000
-    TargetSales: 100000
-  - Name: "\u795D\u5A77"
-    SalePsersonID: 26
-    StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
-    LeastSales: 100000
-    TargetSales: 100000
+    LeastSales: 20000
+    TargetSales: 25000
   - Name: "\u5F20\u73B2\u8273"
-    SalePsersonID: 27
+    SalePsersonID: 26
     StoreName: "\u91D1\u5965\u5E97"
-    LeastSales: 100000
-    TargetSales: 100000
+    LeastSales: 35000
+    TargetSales: 40000

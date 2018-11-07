@@ -21,4 +21,12 @@ public class ProductInfo
     /// 产品分类
     /// </summary>
     public eProductType ProductType;
+    ///
+    ///导出时显示的名字
+    ///
+    public string ExportProductName;
+    ///
+    ///单位
+    ///
+    public string ExportSaleSuffix;
 }

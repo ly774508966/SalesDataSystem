@@ -83,6 +83,30 @@ public class ProductSystemData : SystemDataBase
         return eProductType.None;
     }
 
+    public string GetProductExportNameByID(int id)
+    {
+        foreach (var p in allProductInfosDict)
+        {
+            if (p.Value.ProductID == id)
+            {
+                return p.Value.ExportProductName;
+            }
+        }
+        return "";
+    }
+
+    public string GetProductExportSuffixByID(int id)
+    {
+        foreach (var p in allProductInfosDict)
+        {
+            if (p.Value.ProductID == id)
+            {
+                return p.Value.ExportSaleSuffix;
+            }
+        }
+        return "";
+    }
+
     public void SaveChange()
     {
         List<ProductInfo> newData = new List<ProductInfo>();

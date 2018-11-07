@@ -14,8 +14,8 @@ MonoBehaviour:
   Stores:
   - StoreName: "\u91D1\u5965\u5E97"
     StoreID: 1
-    LeastSales: 60000
-    TargetSales: 70000
+    LeastSales: 70000
+    TargetSales: 80000
     StoreType: 0
   - StoreName: "\u6CB3\u897F\u91D1\u9E70\u5E97"
     StoreID: 2
@@ -25,12 +25,12 @@ MonoBehaviour:
   - StoreName: "\u4E2D\u592E\u5E97"
     StoreID: 3
     LeastSales: 80000
-    TargetSales: 90000
+    TargetSales: 85000
     StoreType: 0
   - StoreName: "\u65B0\u8857\u53E3\u91D1\u9E70\u5E97"
     StoreID: 4
     LeastSales: 80000
-    TargetSales: 90000
+    TargetSales: 85000
     StoreType: 0
   - StoreName: "\u5FB7\u57FABHG\u5E97"
     StoreID: 5
@@ -44,13 +44,13 @@ MonoBehaviour:
     StoreType: 0
   - StoreName: "\u5C71\u59C6\u5E97"
     StoreID: 7
-    LeastSales: 80000
-    TargetSales: 90000
+    LeastSales: 60000
+    TargetSales: 70000
     StoreType: 0
   - StoreName: "\u6C5F\u5B81\u91D1\u9E70\u5E97"
     StoreID: 8
-    LeastSales: 90000
-    TargetSales: 100000
+    LeastSales: 100000
+    TargetSales: 120000
     StoreType: 0
   - StoreName: "\u5E7F\u64AD\u8FDB\u7EBF"
     StoreID: 9

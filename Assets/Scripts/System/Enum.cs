@@ -30,6 +30,7 @@ public enum eProductType
     Single,         //单独的一类
     DrySwallow,     //干燕盏
     None,
+    GuanYan,        //冰糖官燕
 }
 
 public enum eStoreType
